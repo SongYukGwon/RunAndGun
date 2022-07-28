@@ -113,11 +113,12 @@ public class GunController : MonoBehaviour
                         0),
                         out hitInfo, currentGun.range, layerMask))
         */
+        RaycastHit hitInfo;
         if(Physics.Raycast(theCam.transform.position, theCam.transform.forward, out hitInfo))
         {
             //GameObject clone = Instantiate(hit_effect_prefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
             //Destroy(clone, 2);
-            Debug.Log(hitInfo);
+            Debug.Log(hitInfo.transform.gameObject);
 
         }
     }
