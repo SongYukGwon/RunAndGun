@@ -96,9 +96,10 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift) && isGround)
         {
+            Debug.Log("CAn");
             Running();
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift) || isGround )
+        else if (Input.GetKeyUp(KeyCode.LeftShift) || isGround )
         {
             RunningCancel();
         }
@@ -119,6 +120,7 @@ public class PlayerController : MonoBehaviour
     {
         isRun = false;
         applySpeed = walkSpeed;
+        Debug.Log("Cancel");
         //theCrosshair.RunningAnimation(isRun);
     }
 
