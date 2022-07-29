@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
 
     //움직임 체크 변수
     private Vector3 lastPos;
-    
+
 
     private float originPosY;
 
@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
         {
             Running();
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift) || isGround )
+        else if (Input.GetKeyUp(KeyCode.LeftShift) || isGround)
         {
             RunningCancel();
         }

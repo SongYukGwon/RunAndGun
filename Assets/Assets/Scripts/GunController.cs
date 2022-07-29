@@ -118,7 +118,8 @@ public class GunController : MonoBehaviour
         {
             //GameObject clone = Instantiate(hit_effect_prefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
             //Destroy(clone, 2);
-            Debug.Log(hitInfo.transform.gameObject);
+            if (hitInfo.transform.gameObject.CompareTag("Enemy"))
+                hitInfo.transform.GetComponent<EnemyController>().Damage(currentGun.damage, transform.position);
 
         }
     }
