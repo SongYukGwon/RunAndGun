@@ -94,7 +94,6 @@ public class GunController : MonoBehaviour
     private void Shoot()
     {
         // theCrossHair.FireAnimation();
-        Debug.Log("Shoot");
         currentGun.currentBulletCount--;
         currentFireRate = currentGun.fireRate; // 연사속도 재계산
         //PlaySE(currentGun.fire_Sound);
@@ -118,6 +117,7 @@ public class GunController : MonoBehaviour
         {
             //GameObject clone = Instantiate(hit_effect_prefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
             //Destroy(clone, 2);
+            Debug.Log(hitInfo.transform.name);
             if (hitInfo.transform.gameObject.CompareTag("Enemy"))
             {
                 Debug.Log(hitInfo.transform.name);
