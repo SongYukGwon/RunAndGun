@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    //ÀûÀÇ ½ºÅÈ
-    //ºÐ¸® ÇÊ¿ä¼º
+    //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    //ï¿½Ð¸ï¿½ ï¿½Ê¿ä¼º
     [SerializeField]
     private int hp;
     [SerializeField]
@@ -17,13 +17,13 @@ public class EnemyController : MonoBehaviour
 
     private Vector3 destination;
 
-    //»óÅÂº¯¼ö
+    //ï¿½ï¿½ï¿½Âºï¿½ï¿½ï¿½
     private bool isWalking;
     private bool isRunning;
     private bool isAttack;
     private bool isDead = false;
 
-    //ÇÊ¿äÇÑ ÄÄÆ÷³ÍÆ®
+    //ï¿½Ê¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
     [SerializeField] private Animator anim;
     [SerializeField] private Rigidbody rigid;
     [SerializeField] private CapsuleCollider col;
@@ -68,7 +68,10 @@ public class EnemyController : MonoBehaviour
 
     protected void Dead()
     {
-        anim.SetTrigger("DieBack");
+        gameObject.tag = "Dead";
+        //gameObject.transform.Find("Z_Head").gameObject.transform.position = new Vector3(0,1,0);
+        anim.SetTrigger("DieFront");
+        Destroy(gameObject, 3f);
     }
 
 }
