@@ -36,8 +36,13 @@ public class GunController : MonoBehaviour
     //private CrossHair theCrossHair;
 
     //피격 이펙트
-    //[SerializeField]
-    //private GameObject hit_effect_prefab;
+    //좀비 히트
+    [SerializeField]
+    private GameObject zombie_hit_prefab;
+    //일반 구조물 히트
+    [SerializeField]
+    private GameObject other_hit_prefab;
+
 
 
 
@@ -94,10 +99,9 @@ public class GunController : MonoBehaviour
         // theCrossHair.FireAnimation();
         currentGun.currentBulletCount--;
         currentFireRate = currentGun.fireRate; // 연사속도 재계산
-        //PlaySE(currentGun.fire_Sound);
-        currentGun.muzzleFlash.Play();
-        Hit();
-        StopAllCoroutines();
+        currentGun.muzzleFlash.Play(); // 총구화염
+        Hit(); // 히트처리
+        StopAllCoroutines(); 
         StartCoroutine(RetroActionCoroutine());
     }
 
@@ -116,16 +120,18 @@ public class GunController : MonoBehaviour
         RaycastHit hitInfo;
         if(Physics.Raycast(theCam.transform.position, theCam.transform.forward, out hitInfo))
         {
-            //타격 프리펩 추가필요
-            //GameObject clone = Instantiate(hit_effect_prefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-            //Destroy(clone, 2);
-            
+            GameObject clone;
             //Enemy일 경우 적 에너미에게 데미지를 줌.
             if (hitInfo.transform.gameObject.CompareTag("Enemy"))
             {
-                Debug.Log(hitInfo.transform.name);
+                clone = Instantiate(zombie_hit_prefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
                 hitInfo.transform.GetComponent<EnemyController>().Damage(currentGun.damage, transform.position);
             }
+            else
+            {
+                clone = Instantiate(other_hit_prefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+            }
+            Destroy(clone, 2);
         }
     }
 

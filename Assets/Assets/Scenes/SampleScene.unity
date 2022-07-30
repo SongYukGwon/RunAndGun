@@ -537,6 +537,8 @@ MonoBehaviour:
     m_Bits: 0
   originPos: {x: 0, y: 0, z: 0}
   theCam: {fileID: 1507581045}
+  zombie_hit_prefab: {fileID: 4643867220364201670, guid: 2df493abc3816434a9995b57f3d68c7a, type: 3}
+  other_hit_prefab: {fileID: 8772752551415281232, guid: 35e6b7b29603ab74eb7523b3794a1a16, type: 3}
 --- !u!1 &1432627420
 GameObject:
   m_ObjectHideFlags: 0
@@ -1313,6 +1315,10 @@ PrefabInstance:
     - target: {fileID: 1365909567026142409, guid: 373bb6597bc221a4d932e0bbb3a8806d, type: 3}
       propertyPath: m_Radius
       value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1365909567026142411, guid: 373bb6597bc221a4d932e0bbb3a8806d, type: 3}
+      propertyPath: hp
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1365909567026142411, guid: 373bb6597bc221a4d932e0bbb3a8806d, type: 3}
       propertyPath: col

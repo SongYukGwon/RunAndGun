@@ -19,7 +19,7 @@ public class EnemyController : MonoBehaviour
     private int damage;
 
     //���º���
-    private bool isWalking = true;
+    private bool isWalking = false;
     private bool isRunning = false;
     private bool isAttack = false;
     private bool isDead = false;
@@ -40,6 +40,10 @@ public class EnemyController : MonoBehaviour
     {
         nav = GetComponent<NavMeshAgent>();
         nav.SetDestination(target.position);
+        if (walkSpeed <= 3f)
+            isWalking = true;
+        else
+            isRunning = true;
         nav.speed = walkSpeed;
     }
 
@@ -49,6 +53,7 @@ public class EnemyController : MonoBehaviour
         TryMove();
     }
 
+    //범위안에 플레이어가 들어왔을때
     void OnTriggerEnter(Collider collider)
     {
         if(collider.tag == "Player" && currentAttackSpeed == 0 && !isDead)
@@ -62,6 +67,7 @@ public class EnemyController : MonoBehaviour
     IEnumerator Attack(Collider collider)
     {
         Debug.Log("Player Hit");
+        nav.isStopped = true;
         collider.transform.gameObject.GetComponent<PlayerController>().Damaged(damage);
         anim.SetTrigger("Attack");
         isAttack = true;
@@ -71,7 +77,9 @@ public class EnemyController : MonoBehaviour
             currentAttackSpeed -= Time.deltaTime;
             yield return new WaitForFixedUpdate();
         }
+        currentAttackSpeed = 0f;
         isAttack = false;
+        nav.isStopped = false;
         yield break;
     }
 
@@ -87,11 +95,15 @@ public class EnemyController : MonoBehaviour
     //목표를 설정하는 함수
     protected void Move()
     {
-        if (isWalking || isRunning)
+        if (isRunning)
         {
-            nav.SetDestination(target.transform.position);
             anim.SetBool("Run", true);
         }
+        else
+        {
+            anim.SetBool("Walk", true);
+        }
+            nav.SetDestination(target.transform.position);
     }
 
     //데미지 받는 함수
