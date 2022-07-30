@@ -118,7 +118,7 @@ public class EnemyController : MonoBehaviour
         //gameObject.transform.Find(
         //"Z_Head").gameObject.transform.position = new Vector3(0,1,0);
         anim.SetTrigger("DieFront");
-        nav.Stop();
+        nav.isStopped = true;
         Destroy(gameObject, 3f);
     }
 

@@ -17,6 +17,7 @@ public class GunController : MonoBehaviour
     // 현재 효과음
     private AudioSource audioSource;
 
+
     //상태변수
     private bool isReload = false;
 
@@ -84,11 +85,6 @@ public class GunController : MonoBehaviour
                 Shoot();
                 audioSource.Play();
             }
-            else
-            {
-                //CancelFineSight();
-                //StartCoroutine(ReloadCouroutine());
-            }
         }
     }
 
@@ -99,7 +95,7 @@ public class GunController : MonoBehaviour
         currentGun.currentBulletCount--;
         currentFireRate = currentGun.fireRate; // 연사속도 재계산
         //PlaySE(currentGun.fire_Sound);
-        //currentGun.muzzleFlash.Play();
+        currentGun.muzzleFlash.Play();
         Hit();
         StopAllCoroutines();
         StartCoroutine(RetroActionCoroutine());
@@ -130,20 +126,19 @@ public class GunController : MonoBehaviour
                 Debug.Log(hitInfo.transform.name);
                 hitInfo.transform.GetComponent<EnemyController>().Damage(currentGun.damage, transform.position);
             }
-
         }
     }
 
     //반동 코루틴
     IEnumerator RetroActionCoroutine()
     {
-        Vector3 recoilBack = new Vector3(currentGun.retroActionForce, originPos.y, originPos.z);
+        Vector3 recoilBack = new Vector3(originPos.x, originPos.y, -currentGun.retroActionForce);
         Vector3 retroActionRecoilBack = new Vector3(currentGun.retroActionFineSightForce, currentGun.findSightOriginPos.y, currentGun.findSightOriginPos.z);
 
         currentGun.transform.localPosition = originPos;
 
         //반동 시작
-        while (currentGun.transform.localPosition.x <= currentGun.retroActionForce - 0.02f)
+        while (currentGun.transform.localPosition.z <= currentGun.retroActionForce - 0.02f)
         {
             currentGun.transform.localPosition = Vector3.Lerp(currentGun.transform.localPosition, recoilBack, 0.4f);
             yield return null;
