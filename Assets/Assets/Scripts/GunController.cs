@@ -44,6 +44,7 @@ public class GunController : MonoBehaviour
     void Start()
     {
         originPos = Vector3.zero;
+        audioSource = currentGun.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -81,6 +82,7 @@ public class GunController : MonoBehaviour
             if (currentGun.currentBulletCount > 0)
             {
                 Shoot();
+                audioSource.Play();
             }
             else
             {
@@ -105,6 +107,9 @@ public class GunController : MonoBehaviour
 
     private void Hit()
     {
+
+        //공격 범위 설정 방법 설정
+        //스코프는 동그라미로 할 것.
         /*
         if (Physics.Raycast(theCam.transform.position, theCam.transform.forward +
             new Vector3(Random.Range(-theCrossHair.GetAccuracy() - currentGun.accuracy, theCrossHair.GetAccuracy() + currentGun.accuracy),
@@ -115,9 +120,11 @@ public class GunController : MonoBehaviour
         RaycastHit hitInfo;
         if(Physics.Raycast(theCam.transform.position, theCam.transform.forward, out hitInfo))
         {
+            //타격 프리펩 추가필요
             //GameObject clone = Instantiate(hit_effect_prefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
             //Destroy(clone, 2);
-            Debug.Log(hitInfo.transform.name);
+            
+            //Enemy일 경우 적 에너미에게 데미지를 줌.
             if (hitInfo.transform.gameObject.CompareTag("Enemy"))
             {
                 Debug.Log(hitInfo.transform.name);

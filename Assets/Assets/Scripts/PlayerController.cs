@@ -34,11 +34,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Camera theCamera;
     private Rigidbody myRigid;
+    private PlayerStat playerStat;
     //private StatusController theStatusController;
 
     //움직임 체크 변수
     private Vector3 lastPos;
-
 
     private float originPosY;
 
@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider>();
         applySpeed = walkSpeed;
         originPosY = theCamera.transform.localPosition.y;
+        playerStat = GetComponent<PlayerStat>();
     }
 
     // Update is called once per frame
@@ -61,6 +62,11 @@ public class PlayerController : MonoBehaviour
         CameraRotation();
         CharacterRotation();
         MoveCheck();
+    }
+
+    public void Damaged(int dma)
+    {
+        playerStat.Damaged(dma);
     }
 
     private void MoveCheck()
