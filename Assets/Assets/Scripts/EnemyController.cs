@@ -31,13 +31,13 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private CapsuleCollider col;
 
     NavMeshAgent nav;
-    [SerializeField]
     private Transform target;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        target = GameObject.Find("Player").transform;
         nav = GetComponent<NavMeshAgent>();
         nav.SetDestination(target.position);
         if (walkSpeed <= 3f)
