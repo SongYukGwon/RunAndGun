@@ -26,4 +26,10 @@ public class GunInfo : MonoBehaviour
     public ParticleSystem muzzleFlash;
 
     //public AudioClip fire_Sound;
+
+    // 현재 효과음
+    [SerializeField]
+    public AudioSource audioShot;
+    [SerializeField]
+    public AudioSource audioReload;
 }
