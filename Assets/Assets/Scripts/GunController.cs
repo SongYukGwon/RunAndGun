@@ -14,7 +14,6 @@ public class GunController : MonoBehaviour
     // 현재 연사 속도
     private float currentFireRate;
 
-
     //상태변수
     private bool isReload = false;
 
