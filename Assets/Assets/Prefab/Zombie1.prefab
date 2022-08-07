@@ -1365,7 +1365,6 @@ MonoBehaviour:
   anim: {fileID: 8392565738265884209}
   rigid: {fileID: 1365909567026142404}
   col: {fileID: 0}
-  target: {fileID: 0}
 --- !u!195 &1365909567026142409
 NavMeshAgent:
   m_ObjectHideFlags: 0

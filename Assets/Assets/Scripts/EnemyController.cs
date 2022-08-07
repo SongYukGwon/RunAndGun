@@ -33,6 +33,8 @@ public class EnemyController : MonoBehaviour
     NavMeshAgent nav;
     private Transform target;
 
+    //특정 레이어 지정
+    int layerDead;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +47,7 @@ public class EnemyController : MonoBehaviour
         else
             isRunning = true;
         nav.speed = walkSpeed;
+        layerDead = 9;
     }
 
     // Update is called once per frame
@@ -126,12 +129,13 @@ public class EnemyController : MonoBehaviour
     protected void Dead()
     {
         gameObject.tag = "Dead";
+        gameObject.layer = layerDead;
         isDead = true;
         //gameObject.transform.Find(
         //"Z_Head").gameObject.transform.position = new Vector3(0,1,0);
         anim.SetTrigger("DieFront");
         nav.isStopped = true;
-        Destroy(gameObject, 3f);
+        //Destroy(gameObject, 3f);
     }
 
 }

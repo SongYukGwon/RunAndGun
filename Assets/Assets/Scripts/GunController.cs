@@ -23,8 +23,6 @@ public class GunController : MonoBehaviour
 
     //충돌 정보 받아옴.
     private RaycastHit hitInfo;
-    [SerializeField]
-    private LayerMask layerMask;
 
     //본래포지션값
     [SerializeField]
@@ -43,7 +41,8 @@ public class GunController : MonoBehaviour
     [SerializeField]
     private GameObject other_hit_prefab;
 
-
+    // 특정 레이어 마스크 지정
+    int layerMaskEmemy;
 
 
     // Start is called before the first frame update
@@ -51,6 +50,7 @@ public class GunController : MonoBehaviour
     {
         originPos = Vector3.zero;
         audioSource = currentGun.GetComponent<AudioSource>();
+        layerMaskEmemy = (-1) - (1 << LayerMask.NameToLayer("Dead")); // Enemy레이어만 탐색하도록지정
     }
 
     // Update is called once per frame
@@ -118,21 +118,18 @@ public class GunController : MonoBehaviour
                         out hitInfo, currentGun.range, layerMask))
         */
         RaycastHit hitInfo;
-        if(Physics.Raycast(theCam.transform.position, theCam.transform.forward, out hitInfo))
+        GameObject clone;
+        if (Physics.Raycast(theCam.transform.position, theCam.transform.forward, out hitInfo,Mathf.Infinity, layerMaskEmemy))
         {
-            GameObject clone;
             //Enemy일 경우 적 에너미에게 데미지를 줌.
             if (hitInfo.transform.gameObject.CompareTag("Enemy"))
             {
                 clone = Instantiate(zombie_hit_prefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
                 hitInfo.transform.GetComponent<EnemyController>().Damage(currentGun.damage, transform.position);
+                Destroy(clone, 2);
             }
-            else
-            {
-                clone = Instantiate(other_hit_prefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-            }
-            Destroy(clone, 2);
         }
+        
     }
 
     //반동 코루틴
