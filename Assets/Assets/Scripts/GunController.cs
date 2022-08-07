@@ -14,9 +14,6 @@ public class GunController : MonoBehaviour
     // 현재 연사 속도
     private float currentFireRate;
 
-    // 현재 효과음
-    private AudioSource audioSource;
-
 
     //상태변수
     private bool isReload = false;
@@ -49,7 +46,6 @@ public class GunController : MonoBehaviour
     void Start()
     {
         originPos = Vector3.zero;
-        audioSource = currentGun.GetComponent<AudioSource>();
         layerMaskEmemy = (-1) - (1 << LayerMask.NameToLayer("Dead")); // Enemy레이어만 탐색하도록지정
     }
 
@@ -60,7 +56,7 @@ public class GunController : MonoBehaviour
         {
             GunFireRateCalc();
             TryFire();
-            //TryReload();
+            TryReload();
         }
     }
 
@@ -88,7 +84,7 @@ public class GunController : MonoBehaviour
             if (currentGun.currentBulletCount > 0)
             {
                 Shoot();
-                audioSource.Play();
+                currentGun.audioShot.Play();
             }
         }
     }
@@ -153,5 +149,47 @@ public class GunController : MonoBehaviour
             yield return null;
         }
 
+    }
+
+    //재장전 시도
+    private void TryReload()
+    {
+        if (Input.GetKeyDown(KeyCode.R) && !isReload && currentGun.currentBulletCount < currentGun.reloadBulletCount)
+        {
+            StartCoroutine(ReloadCouroutine());
+            currentGun.audioReload.Play();
+        }
+    }
+
+    //재장전
+    IEnumerator ReloadCouroutine()
+    {
+        if (currentGun.carryBulletCount > 0)
+        {
+            isReload = true;
+            //currentGun.anim.SetTrigger("Reload");
+
+            currentGun.carryBulletCount += currentGun.currentBulletCount;
+            currentGun.currentBulletCount = 0;
+
+            yield return new WaitForSeconds(currentGun.reloadTime);
+
+            if (currentGun.carryBulletCount >= currentGun.reloadBulletCount)
+            {
+                currentGun.currentBulletCount = currentGun.reloadBulletCount;
+                currentGun.carryBulletCount -= currentGun.reloadBulletCount;
+            }
+            else
+            {
+                currentGun.currentBulletCount = currentGun.carryBulletCount;
+                currentGun.carryBulletCount = 0;
+            }
+
+            isReload = false;
+        }
+        else
+        {
+            Debug.Log("소유한 총알이 없습니다");
+        }
     }
 }
