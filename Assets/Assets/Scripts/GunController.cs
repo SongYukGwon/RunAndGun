@@ -136,12 +136,10 @@ public class GunController : MonoBehaviour
     IEnumerator RetroActionCoroutine()
     {
         Vector3 recoilBack = new Vector3(originPos.x, originPos.y, -currentGun.retroActionForce);
-        Vector3 retroActionRecoilBack = new Vector3(currentGun.retroActionFineSightForce, currentGun.findSightOriginPos.y, currentGun.findSightOriginPos.z);
-
         currentGun.transform.localPosition = originPos;
 
         //반동 시작
-        while (currentGun.transform.localPosition.z <= currentGun.retroActionForce - 0.02f)
+        while (currentGun.transform.localPosition.z >= -(currentGun.retroActionForce - 0.02f))
         {
             currentGun.transform.localPosition = Vector3.Lerp(currentGun.transform.localPosition, recoilBack, 0.4f);
             yield return null;
