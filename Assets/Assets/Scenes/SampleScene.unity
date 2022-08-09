@@ -2598,7 +2598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d17f6d9b0e776fe41bfe13bfdc6c5d6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentGun: {fileID: 543450653538568657}
+  currentGun: {fileID: 8744291564984480949}
   originPos: {x: 0, y: 0, z: 0}
   theCam: {fileID: 1507581045}
   zombie_hit_prefab: {fileID: 4643867220364201670, guid: 2df493abc3816434a9995b57f3d68c7a, type: 3}
@@ -4754,7 +4754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6893460362154392195, guid: f82dcbbda2873c144bc3d36f5a4d2296, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f82dcbbda2873c144bc3d36f5a4d2296, type: 3}
@@ -4771,7 +4771,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4888455973764398282, guid: 776a4d8508949ad43875e7c409089b23, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5232224414894696048, guid: 776a4d8508949ad43875e7c409089b23, type: 3}
       propertyPath: m_RootOrder
@@ -4825,6 +4825,10 @@ PrefabInstance:
       propertyPath: audioReload
       value: 
       objectReference: {fileID: 543450653538568661}
+    - target: {fileID: 5698778797031332182, guid: 776a4d8508949ad43875e7c409089b23, type: 3}
+      propertyPath: retroActionForce
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 776a4d8508949ad43875e7c409089b23, type: 3}
 --- !u!4 &8219674557177949707 stripped
