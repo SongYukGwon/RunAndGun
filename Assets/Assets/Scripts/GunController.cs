@@ -46,6 +46,8 @@ public class GunController : MonoBehaviour
     {
         originPos = Vector3.zero;
         layerMaskEmemy = (-1) - (1 << LayerMask.NameToLayer("Dead")); // Enemy레이어만 탐색하도록지정
+        GunChanger.currentWeapon = currentGun.transform;
+        GunChanger.currentWeaponAnim = currentGun.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -86,6 +88,30 @@ public class GunController : MonoBehaviour
                 currentGun.audioShot.Play();
             }
         }
+    }
+
+    public void CancelReload()
+    {
+        if (isReload)
+        {
+            StopAllCoroutines();
+            isReload = false;
+        }
+    }
+
+    public void GunChange(GunInfo _gun)
+    {
+        if (currentGun != null)
+            currentGun.gameObject.SetActive(false);
+        Debug.Log(_gun.gunName);
+        currentGun = _gun;
+        GunChanger.currentWeapon = currentGun.GetComponent<Transform>();
+        GunChanger.currentWeaponAnim = currentGun.GetComponent<Animator>();
+
+        currentGun.transform.localPosition = Vector3.zero;
+
+        currentGun.gameObject.SetActive(true);
+        isActivate = true;
     }
 
     //발사후 계산
@@ -130,12 +156,14 @@ public class GunController : MonoBehaviour
     //반동 코루틴
     IEnumerator RetroActionCoroutine()
     {
-        Vector3 recoilBack = new Vector3(originPos.x, originPos.y, -currentGun.retroActionForce);
+        Vector3 recoilBack = new Vector3(currentGun.retroActionForce, originPos.y, originPos.z);
+
         currentGun.transform.localPosition = originPos;
 
         //반동 시작
-        while (currentGun.transform.localPosition.z >= -(currentGun.retroActionForce - 0.02f))
+        while (currentGun.transform.localPosition.x <= currentGun.retroActionForce - 0.02f)
         {
+            Debug.Log("반동");
             currentGun.transform.localPosition = Vector3.Lerp(currentGun.transform.localPosition, recoilBack, 0.4f);
             yield return null;
         }
@@ -144,6 +172,7 @@ public class GunController : MonoBehaviour
 
         while (currentGun.transform.localPosition != originPos)
         {
+            Debug.Log("원위치");
             currentGun.transform.localPosition = Vector3.Lerp(currentGun.transform.localPosition, originPos, 0.1f);
             yield return null;
         }
