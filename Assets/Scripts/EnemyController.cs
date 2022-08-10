@@ -5,8 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    //���� ����
-    //�и� �ʿ伺
     [SerializeField]
     private int hp;
     [SerializeField]
@@ -17,6 +15,8 @@ public class EnemyController : MonoBehaviour
     private float runSpeed;
     [SerializeField]
     private int damage;
+    [SerializeField]
+    private int exp;
 
     //���º���
     private bool isWalking = false;
@@ -35,6 +35,7 @@ public class EnemyController : MonoBehaviour
 
     //특정 레이어 지정
     int layerDead;
+
 
     // Start is called before the first frame update
     void Start()
@@ -131,11 +132,10 @@ public class EnemyController : MonoBehaviour
         gameObject.tag = "Dead";
         gameObject.layer = layerDead;
         isDead = true;
-        //gameObject.transform.Find(
-        //"Z_Head").gameObject.transform.position = new Vector3(0,1,0);
         anim.SetTrigger("DieFront");
         nav.isStopped = true;
-        //Destroy(gameObject, 3f);
+        FindObjectOfType<PlayerStat>().IncreaseEXP(exp);
+        Destroy(gameObject, 3f);
     }
 
 }

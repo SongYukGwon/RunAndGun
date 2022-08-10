@@ -15,6 +15,13 @@ public class PlayerStat : MonoBehaviour
     private float sp;
     private float currentSp;
 
+    //경험치
+    [SerializeField]
+    private float exp;
+    private float currentExp;
+
+    private int level;
+
     //스태미나 증가량
     [SerializeField]
     private int spIncreaseSpeed;
@@ -36,13 +43,15 @@ public class PlayerStat : MonoBehaviour
     private Image[] barImage;
 
 
-    private const int HP = 1, SP = 2;
+    private const int HP = 0, SP = 1, EXP = 2;
 
     void Start()
     {
         currentHp = hp;
         currentSp = sp;
         currentDp = dp;
+        currentExp = 0;
+        level = 1;
     }
 
     private void Update()
@@ -67,6 +76,7 @@ public class PlayerStat : MonoBehaviour
     {
         barImage[HP].fillAmount = (float)currentHp / hp;
         barImage[SP].fillAmount = (float)currentSp / sp;
+        barImage[EXP].fillAmount = (float)currentExp / exp;
     }
 
     private void SpRecover()
@@ -129,7 +139,21 @@ public class PlayerStat : MonoBehaviour
             Debug.Log("캐릭터의 방여력이 0이 되었습니다.");
     }
 
+    public void IncreaseEXP(int exp)
+    {
+        currentExp += exp;
+        Debug.Log(currentExp);
+        if (currentExp >= EXP)
+            LevelUp();
+    }
 
+    private void LevelUp()
+    {
+        currentExp = 0;
+
+        level += 1;
+        exp += 50;
+    }
 
 
     //플레이어 데미지 받기

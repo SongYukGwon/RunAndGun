@@ -1362,9 +1362,11 @@ MonoBehaviour:
   walkSpeed: 3
   runSpeed: 5
   damage: 1
+  exp: 2
   anim: {fileID: 8392565738265884209}
   rigid: {fileID: 1365909567026142404}
   col: {fileID: 0}
+  thePlayerStat: {fileID: 2397541196011330642, guid: 255158edb4faeb841abc0a50297216d3, type: 3}
 --- !u!195 &1365909567026142409
 NavMeshAgent:
   m_ObjectHideFlags: 0
