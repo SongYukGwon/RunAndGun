@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -34,22 +35,32 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Camera theCamera;
     private Rigidbody myRigid;
+    [SerializeField]
     private PlayerStat playerStat;
-    //private StatusController theStatusController;
+
+    //히트처리 컴포넌트
+    [SerializeField]
+    private Image hitedImage;
+    [SerializeField]
+    private Vector3 originCameraPos;
 
     //움직임 체크 변수
     private Vector3 lastPos;
 
     private float originPosY;
 
+    private Vector3 originRotation;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
+        originRotation = theCamera.transform.eulerAngles;
         myRigid = GetComponent<Rigidbody>();
         capsuleCollider = GetComponent<CapsuleCollider>();
         applySpeed = walkSpeed;
         originPosY = theCamera.transform.localPosition.y;
-        playerStat = GetComponent<PlayerStat>();
     }
 
     // Update is called once per frame
@@ -66,7 +77,37 @@ public class PlayerController : MonoBehaviour
 
     public void Damaged(int dma)
     {
+        StopCoroutine(DamageAnim());
+        StartCoroutine(DamageAnim());
         playerStat.Damaged(dma);
+    }
+
+    IEnumerator DamageAnim()
+    {
+        Color a = new Color(1, 0, 0, 0.2f);
+        Color originColor = hitedImage.color;
+        hitedImage.color = a;
+
+        Vector3 startPosition = theCamera.transform.eulerAngles;
+
+
+        float shakeTime = 0.5f;
+        while(shakeTime > 0.0f)
+        {
+            float x = 0;
+            float y = 0;
+            float z = Random.Range(-1f, 1f);
+            theCamera.transform.rotation = Quaternion.Euler(startPosition + new Vector3(x, y, z) * 0.7f);
+
+            shakeTime -= 0.1f;
+
+            yield return new WaitForSeconds(0.1f);
+        }
+        theCamera.transform.rotation = Quaternion.Euler(startPosition);
+
+
+        //yield return new WaitForSeconds(1f);
+        hitedImage.color = originColor;
     }
 
     private void MoveCheck()
@@ -104,11 +145,11 @@ public class PlayerController : MonoBehaviour
     //달리기 시도
     private void TryRun()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && isGround)
+        if (Input.GetKey(KeyCode.LeftShift) && isGround && playerStat.GetCurrentSP() != 0)
         {
             Running();
         }
-        else if (Input.GetKeyUp(KeyCode.LeftShift) || isGround)
+        else if (Input.GetKeyUp(KeyCode.LeftShift) || isGround || isGround && playerStat.GetCurrentSP() != 0)
         {
             RunningCancel();
         }
@@ -117,11 +158,9 @@ public class PlayerController : MonoBehaviour
     //달리기
     private void Running()
     {
-        //theGunController.CancelFineSight();
-
         isRun = true;
         //theCrosshair.RunningAnimation(isRun);
-        //theStatusController.DecreaseStamina(5);
+        playerStat.DecreaseStamina(10*Time.deltaTime);
         applySpeed = runSpeed;
     }
     //달리기 취소
@@ -135,10 +174,8 @@ public class PlayerController : MonoBehaviour
     //점프
     private void Jump()
     {
-        //theStatusController.DecreaseStamina(100);
-        //up 010
+        playerStat.DecreaseStamina(50);
         myRigid.velocity = transform.up * jumpForce;
-
     }
 
     //카메라 회전
@@ -166,9 +203,6 @@ public class PlayerController : MonoBehaviour
         Vector3 _velocity = (_moveHorizontal + _moveVertical).normalized * applySpeed;
 
         myRigid.MovePosition(transform.position + _velocity * Time.deltaTime);
-
-
-
     }
 
 

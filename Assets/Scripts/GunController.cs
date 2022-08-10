@@ -158,22 +158,22 @@ public class GunController : MonoBehaviour
     {
         Vector3 recoilBack = new Vector3(originPos.x, originPos.y, currentGun.retroActionForce);
 
-        currentGun.transform.localPosition = originPos;
+        currentGun.transform.position = originPos;
          
         //반동 시작
-        while (currentGun.transform.localPosition.x <= currentGun.retroActionForce - 0.02f)
+        while (currentGun.transform.position.z <= currentGun.retroActionForce - 0.02f)
         {
             Debug.Log("반동");
-            currentGun.transform.localPosition = Vector3.Lerp(currentGun.transform.localPosition, recoilBack, Time.deltaTime *0.4f);
+            currentGun.transform.position = Vector3.Lerp(currentGun.transform.localPosition, recoilBack, Time.deltaTime *0.4f);
             yield return null;
         }
 
         //원위치
 
-        while (currentGun.transform.localPosition != originPos)
+        while (currentGun.transform.position != originPos)
         {
             Debug.Log("원위치");
-            currentGun.transform.localPosition = Vector3.Lerp(currentGun.transform.localPosition, originPos, 0.1f);
+            currentGun.transform.position = Vector3.Lerp(currentGun.transform.localPosition, originPos, 0.1f);
             yield return null;
         }
 
