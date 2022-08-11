@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerStat : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class PlayerStat : MonoBehaviour
     //경험치
     [SerializeField]
     private float exp;
-    private float currentExp;
+    private float currentExp =0;
 
     private int level;
 
@@ -39,18 +40,20 @@ public class PlayerStat : MonoBehaviour
     private int dp;
     private int currentDp;
 
+
+    //UI 표시 컴포넌트
     [SerializeField]
     private Image[] barImage;
+    [SerializeField]
+    private TextMeshProUGUI[] text;
 
-
-    private const int HP = 0, SP = 1, EXP = 2;
+    private const int HP = 0, SP = 1, EXP = 2, LV = 3;
 
     void Start()
     {
         currentHp = hp;
         currentSp = sp;
         currentDp = dp;
-        currentExp = 0;
         level = 1;
     }
 
@@ -111,7 +114,6 @@ public class PlayerStat : MonoBehaviour
     {
         spUsed = true;
         currentSpRechargeTime = 0;
-        Debug.Log(currentSp);
         if (currentSp - _count > 0)
             currentSp -= _count;
         else
@@ -139,12 +141,15 @@ public class PlayerStat : MonoBehaviour
             Debug.Log("캐릭터의 방여력이 0이 되었습니다.");
     }
 
-    public void IncreaseEXP(int exp)
+    public void IncreaseEXP(int getExp)
     {
-        currentExp += exp;
+        currentExp += getExp;
         Debug.Log(currentExp);
-        if (currentExp >= EXP)
+        if (currentExp >= exp)
+        {
+            Debug.Log("LevelUp");
             LevelUp();
+        }
     }
 
     private void LevelUp()

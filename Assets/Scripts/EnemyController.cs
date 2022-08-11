@@ -18,6 +18,8 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private int exp;
 
+    private PlayerStat thePlayerStat;
+
     //���º���
     private bool isWalking = false;
     private bool isRunning = false;
@@ -41,6 +43,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         target = GameObject.Find("Player").transform;
+        thePlayerStat = GameObject.Find("Stat").GetComponent<PlayerStat>();
         nav = GetComponent<NavMeshAgent>();
         nav.SetDestination(target.position);
         if (walkSpeed <= 3f)
@@ -134,7 +137,8 @@ public class EnemyController : MonoBehaviour
         isDead = true;
         anim.SetTrigger("DieFront");
         nav.isStopped = true;
-        FindObjectOfType<PlayerStat>().IncreaseEXP(exp);
+        //개선방안 강구 필요
+        thePlayerStat.IncreaseEXP(exp);
         Destroy(gameObject, 3f);
     }
 

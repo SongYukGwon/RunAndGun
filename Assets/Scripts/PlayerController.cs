@@ -75,6 +75,8 @@ public class PlayerController : MonoBehaviour
         MoveCheck();
     }
 
+
+    //데미지 처리
     public void Damaged(int dma)
     {
         StopCoroutine(DamageAnim());
@@ -82,6 +84,7 @@ public class PlayerController : MonoBehaviour
         playerStat.Damaged(dma);
     }
 
+    //데미지 받을때 카메라 효과
     IEnumerator DamageAnim()
     {
         Color a = new Color(1, 0, 0, 0.2f);
@@ -110,6 +113,8 @@ public class PlayerController : MonoBehaviour
         hitedImage.color = originColor;
     }
 
+
+    //움직이는지 확인
     private void MoveCheck()
     {
         if (!isRun && isGround)
@@ -124,6 +129,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //땅에 있는지 확인
     private void IsGround()
     {
         //Vector는 월드 기준좌표로 보여준다. transform은 오브젝트 기준
