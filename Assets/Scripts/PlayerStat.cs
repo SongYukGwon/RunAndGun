@@ -80,6 +80,10 @@ public class PlayerStat : MonoBehaviour
         barImage[HP].fillAmount = (float)currentHp / hp;
         barImage[SP].fillAmount = (float)currentSp / sp;
         barImage[EXP].fillAmount = (float)currentExp / exp;
+        text[HP].text = currentHp.ToString();
+        text[SP].text = string.Format("{0:.0}", currentSp);
+        text[EXP].text = string.Format("{0:00}", ((float)currentExp / exp)*100)+"%";
+        text[LV].text = level.ToString();
     }
 
     private void SpRecover()
