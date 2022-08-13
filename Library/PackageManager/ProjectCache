@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637957244284755296
+      ticks: 637959855646662613
     m_Hash: 3825309892
   m_LockFileStatus:
     m_FilePath: C:/Users/thddb/RunAndGun/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637957245872146430
+      ticks: 637959855657500034
     m_Hash: 2953667448
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
@@ -2786,11 +2786,13 @@ m_ResolvedPackages:
     - 1.4.0
     - 1.4.1
     - 1.4.2
+    - 1.4.3
     compatible:
     - 1.4.0
     - 1.4.1
     - 1.4.2
-    verified: 1.4.2
+    - 1.4.3
+    verified: 1.4.3
   dependencies:
   - name: com.unity.modules.unitywebrequest
     version: 1.0.0

@@ -71,3 +71,25 @@ The following packages were added:
   com.unity.ugui@1.0.0
 The following packages were updated:
   com.unity.ide.visualstudio from version 2.0.16 to 2.0.15
+
+=== Sat Aug 13 19:52:01 2022
+
+Packages were changed.
+Update Mode: mergeDefaultDependencies
+
+The following packages were added:
+  com.unity.cinemachine@2.3.4
+  com.unity.ext.nunit@1.0.0
+  com.unity.package-manager-ui@2.2.0
+  com.unity.postprocessing@2.1.7
+
+=== Sat Aug 13 20:06:04 2022
+
+Packages were changed.
+Update Mode: resetToDefaultDependencies
+
+The following packages were removed:
+  com.unity.cinemachine@2.3.4
+  com.unity.ext.nunit@1.0.0
+  com.unity.package-manager-ui@2.2.0
+  com.unity.postprocessing@2.1.7

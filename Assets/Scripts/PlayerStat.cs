@@ -51,7 +51,7 @@ public class PlayerStat : MonoBehaviour
 
     void Start()
     {
-        currentHp = hp;
+        currentHp = 50;
         currentSp = sp;
         currentDp = dp;
         level = 1;
