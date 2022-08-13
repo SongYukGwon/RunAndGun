@@ -152,6 +152,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 230eb44a4de7a0f4885badc6e109c20f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammo:
+  - {fileID: 5240239761282809674, guid: 645e408205909a34fabf4ecf00932af5, type: 3}
+  - {fileID: 8715568815668734706, guid: d5eafb518952dfb46ab31ab7a709afb1, type: 3}
+  - {fileID: 8297493706988715294, guid: a204114c74bd4a94e9ce8b3a745b75e1, type: 3}
+  heal: {fileID: 8124215289106722193, guid: 28f5ac0c66021ef4f9318abcfaba94bd, type: 3}
+  itemSpawnPer: 0.2
 --- !u!4 &4635126
 Transform:
   m_ObjectHideFlags: 0

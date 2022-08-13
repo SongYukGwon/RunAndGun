@@ -2,10 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Heal : MonoBehaviour
+public class Heal : ItemInfo
 {
-
-    private void OnTriggerEnter(Collider other)
+    protected override void ItemEffet(Collider other)
     {
         if (other.tag == "Player")
         {
@@ -13,5 +12,10 @@ public class Heal : MonoBehaviour
             other.GetComponent<PlayerController>().IncreseHealPack(1);
             Destroy(gameObject);
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        ItemEffet(other);
     }
 }

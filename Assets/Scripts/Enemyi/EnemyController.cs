@@ -140,18 +140,10 @@ public class EnemyController : MonoBehaviour
         anim.SetTrigger("DieFront");
         nav.isStopped = true;
         thePlayerStat.IncreaseEXP(exp);
+        FindObjectOfType<ObjectManager>().TrySpawnItem(gameObject.transform.position);
         Destroy(gameObject, 3f);
     }
 
-    private void TrySpawnItem()
-    {
-        float per = Random.Range(0f, 1f);
 
-        if(per < itemSpawnPer)
-        {
-            int type = Random.RandomRange(0, 2);
-
-        }
-    }
 
 }
