@@ -120,15 +120,21 @@ public class EnemyController : MonoBehaviour
     {
         if (!isDead)
         {
-            hp -= _dmg;
 
+            hp -= _dmg;
+            Vector3 reactVec = transform.position - _targetPos;
+
+            rigid.AddForce(reactVec.normalized*50 , ForceMode.Impulse);
             if (hp <= 0)
             {
                 Dead();
                 return;
             }
+
         }
     }
+
+
 
 
     //죽는 함수
