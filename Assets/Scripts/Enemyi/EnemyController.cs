@@ -5,34 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField]
-    private int hp;
-    [SerializeField]
-    private float attackSpeed;
-    [SerializeField]
-    private float walkSpeed;
-    [SerializeField]
-    private float runSpeed;
-    [SerializeField]
-    private int damage;
-    [SerializeField]
-    private int exp;
-    [SerializeField]
-    private float itemSpawnPer;
-
     private PlayerStat thePlayerStat;
-
-    //���º���
-    private bool isWalking = false;
-    private bool isRunning = false;
-    private bool isAttack = false;
-    private bool isDead = false;
-    private float currentAttackSpeed = 0f;
-
-    //필요한 컴포넌트
-    [SerializeField] private Animator anim;
-    [SerializeField] private Rigidbody rigid;
-    [SerializeField] private CapsuleCollider col;
 
     NavMeshAgent nav;
     private Transform target;
@@ -40,6 +13,14 @@ public class EnemyController : MonoBehaviour
     //특정 레이어 지정
     int layerDead;
 
+    //좀비 정보
+    [SerializeField]
+    private ZombieInfo currentZombie;
+
+    //좀비의 필요한 컴포넌트
+    private Animator anim;
+    private Rigidbody rigid;
+    private CapsuleCollider col;
 
     // Start is called before the first frame update
     void Start()
@@ -47,12 +28,12 @@ public class EnemyController : MonoBehaviour
         target = GameObject.Find("Player").transform;
         thePlayerStat = GameObject.Find("Stat").GetComponent<PlayerStat>();
         nav = GetComponent<NavMeshAgent>();
+        anim = currentZombie.GetComponent<Animator>();
+        rigid = currentZombie.GetComponent<Rigidbody>();
+        col = currentZombie.GetComponent<CapsuleCollider>();
+
         nav.SetDestination(target.position);
-        if (walkSpeed <= 3f)
-            isWalking = true;
-        else
-            isRunning = true;
-        nav.speed = walkSpeed;
+        SetZombieWalkORRun();
         layerDead = 9;
     }
 
@@ -62,10 +43,19 @@ public class EnemyController : MonoBehaviour
         TryMove();
     }
 
-    //범위안에 플레이어가 들어왔을때
+    private void SetZombieWalkORRun()
+    {
+        if (currentZombie.walkSpeed <= 3f)
+            currentZombie.isWalking = true;
+        else
+            currentZombie.isRunning = true;
+        nav.speed = currentZombie.walkSpeed;
+    }
+
+    //범위안에 플레이어가 들어왔을때 <수정필요>
     void OnTriggerEnter(Collider collider)
     {
-        if(collider.tag == "Player" && currentAttackSpeed == 0 && !isDead)
+        if(collider.tag == "Player" && currentZombie.currentAttackSpeed == 0 && !currentZombie.isDead)
         {
             StartCoroutine(Attack(collider));
         }
@@ -77,17 +67,17 @@ public class EnemyController : MonoBehaviour
     {
         Debug.Log("Player Hit");
         nav.isStopped = true;
-        collider.transform.gameObject.GetComponent<PlayerController>().Damaged(damage);
+        collider.transform.gameObject.GetComponent<PlayerController>().Damaged(currentZombie.damage);
         anim.SetTrigger("Attack");
-        isAttack = true;
-        currentAttackSpeed = attackSpeed;
-        while(currentAttackSpeed > 1.0f)
+        currentZombie.isAttack = true;
+        currentZombie.currentAttackSpeed = currentZombie.attackSpeed;
+        while(currentZombie.currentAttackSpeed > 1.0f)
         {
-            currentAttackSpeed -= Time.deltaTime;
+            currentZombie.currentAttackSpeed -= Time.deltaTime;
             yield return new WaitForFixedUpdate();
         }
-        currentAttackSpeed = 0f;
-        isAttack = false;
+        currentZombie.currentAttackSpeed = 0f;
+        currentZombie.isAttack = false;
         nav.isStopped = false;
         yield break;
     }
@@ -95,7 +85,7 @@ public class EnemyController : MonoBehaviour
     //죽지않거나 공격하지않으면 Move함수 실행
     protected void TryMove()
     {
-        if (!isDead && !isAttack)
+        if (!currentZombie.isDead && !currentZombie.isAttack)
         {
             Move();
         }
@@ -104,7 +94,7 @@ public class EnemyController : MonoBehaviour
     //목표를 설정하는 함수
     protected void Move()
     {
-        if (isRunning)
+        if (currentZombie.isRunning)
         {
             anim.SetBool("Run", true);
         }
@@ -118,14 +108,14 @@ public class EnemyController : MonoBehaviour
     //데미지 받는 함수
     public void Damage(int _dmg, Vector3 _targetPos)
     {
-        if (!isDead)
+        if (!currentZombie.isDead)
         {
 
-            hp -= _dmg;
+            currentZombie.hp -= _dmg;
             Vector3 reactVec = transform.position - _targetPos;
 
             rigid.AddForce(reactVec.normalized*50 , ForceMode.Impulse);
-            if (hp <= 0)
+            if (currentZombie.hp <= 0)
             {
                 Dead();
                 return;
@@ -142,10 +132,10 @@ public class EnemyController : MonoBehaviour
     {
         gameObject.tag = "Dead";
         gameObject.layer = layerDead;
-        isDead = true;
+        currentZombie.isDead = true;
         anim.SetTrigger("DieFront");
         nav.isStopped = true;
-        thePlayerStat.IncreaseEXP(exp);
+        thePlayerStat.IncreaseEXP(currentZombie.exp);
         FindObjectOfType<ObjectManager>().TrySpawnItem(gameObject.transform.position);
         Destroy(gameObject, 3f);
     }
