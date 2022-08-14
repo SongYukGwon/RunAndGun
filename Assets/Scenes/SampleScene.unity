@@ -2122,8 +2122,9 @@ MonoBehaviour:
   - {fileID: 543450653538568657}
   - {fileID: 8744291564984480949}
   - {fileID: 9111721553566268725}
-  gunUIHandler: {fileID: 0}
+  gunUIHandler: {fileID: 1724572091}
   theGunController: {fileID: 1392917585}
+  currentWeaponName: assult
 --- !u!1 &1432627420
 GameObject:
   m_ObjectHideFlags: 0
@@ -4600,6 +4601,63 @@ PrefabInstance:
       objectReference: {fileID: 543450653538568661}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 776a4d8508949ad43875e7c409089b23, type: 3}
+--- !u!1001 &5956101882703751763
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7306141235715294437, guid: 37e58f7166ea4d646b946ed1d997120a, type: 3}
+      propertyPath: m_Name
+      value: Ghoul
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309299455041565719, guid: 37e58f7166ea4d646b946ed1d997120a, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309299455041565719, guid: 37e58f7166ea4d646b946ed1d997120a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.008842
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309299455041565719, guid: 37e58f7166ea4d646b946ed1d997120a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309299455041565719, guid: 37e58f7166ea4d646b946ed1d997120a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.852
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309299455041565719, guid: 37e58f7166ea4d646b946ed1d997120a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309299455041565719, guid: 37e58f7166ea4d646b946ed1d997120a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309299455041565719, guid: 37e58f7166ea4d646b946ed1d997120a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309299455041565719, guid: 37e58f7166ea4d646b946ed1d997120a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309299455041565719, guid: 37e58f7166ea4d646b946ed1d997120a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309299455041565719, guid: 37e58f7166ea4d646b946ed1d997120a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7309299455041565719, guid: 37e58f7166ea4d646b946ed1d997120a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 37e58f7166ea4d646b946ed1d997120a, type: 3}
 --- !u!4 &8219674557177949707 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6116359990996557881, guid: f82dcbbda2873c144bc3d36f5a4d2296, type: 3}
