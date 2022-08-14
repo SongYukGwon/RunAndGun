@@ -51,7 +51,6 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 originRotation;
 
-    private int healpack;
 
 
     // Start is called before the first frame update
@@ -62,7 +61,6 @@ public class PlayerController : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider>();
         applySpeed = walkSpeed;
         originPosY = theCamera.transform.localPosition.y;
-        healpack = 0;
     }
 
     // Update is called once per frame
@@ -79,32 +77,15 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void IncreseHealPack(int num)
-    {
-        healpack += num;
-    }
-
-    public void TryHeal()
+    private void TryHeal()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Heal();
+            playerStat.Heal();
         }
     }
 
-    private void Heal()
-    {
-        if (healpack > 0)
-        {
-            playerStat.IncreaseHP(30);
-            healpack -= 1;
-        }
-        else
-        {
-            Debug.Log("힐팩이 없습니다.");
-        }
-    }
-
+    
     //데미지 처리
     public void Damaged(int dma)
     {

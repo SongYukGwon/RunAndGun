@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GunUIHandler : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class GunUIHandler : MonoBehaviour
 
     private int currentImageNum = 1;
     //private const int PISTOL = 0, ASSULT = 1, SHOTGUN = 2;
+
+    
 
     public void ChangeGunUI(int type)
     {

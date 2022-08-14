@@ -12,6 +12,10 @@ public class ObjectManager : MonoBehaviour
     private Heal heal;
     [SerializeField]
     private float itemSpawnPer;
+    [SerializeField]
+    private float healPackPer;
+    [SerializeField]
+    private float ammoPer;
 
     public void TrySpawnItem(Vector3 pos)
     {
@@ -25,17 +29,18 @@ public class ObjectManager : MonoBehaviour
 
     private void SpawmItem(Vector3 pos)
     {
-        int itemType = Random.Range(0,2);
-       
-        switch(itemType)
+        float itemType = Random.Range(0f, healPackPer+ammoPer);
+        Object spawnItem = new Object(); 
+        if(itemType< ammoPer)
         {
-            case (0):
-                int ammoType = Random.Range(0, 3);
-                Instantiate(ammo[ammoType], pos, Quaternion.identity);
-                break;
-            case (1):
-                Instantiate(heal, pos, Quaternion.identity);
-                break;
+            int ammoType = Random.Range(0, 3);
+            spawnItem = ammo[ammoType];
         }
+        else if(ammoPer < itemType && itemType < healPackPer+ammoPer)
+        {
+            spawnItem = heal;
+        }
+
+        Instantiate(spawnItem, pos, Quaternion.identity);
     }
 }

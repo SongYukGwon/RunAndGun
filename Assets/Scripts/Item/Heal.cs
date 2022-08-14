@@ -9,7 +9,7 @@ public class Heal : ItemInfo
         if (other.tag == "Player")
         {
             Debug.Log("ÈúÆÑÀ» ¸Ô¾ú½À´Ï´Ù.");
-            other.GetComponent<PlayerController>().IncreseHealPack(1);
+            FindObjectOfType<PlayerStat>().IncreseHealPack(1);
             Destroy(gameObject);
         }
     }

@@ -46,8 +46,12 @@ public class PlayerStat : MonoBehaviour
     private Image[] barImage;
     [SerializeField]
     private TextMeshProUGUI[] text;
+    [SerializeField]
+    private TextMeshProUGUI healCountText;
 
     private const int HP = 0, SP = 1, EXP = 2, LV = 3;
+
+    private int healpack;
 
     void Start()
     {
@@ -55,6 +59,7 @@ public class PlayerStat : MonoBehaviour
         currentSp = sp;
         currentDp = dp;
         level = 1;
+        healpack = 0;
     }
 
     private void Update()
@@ -63,6 +68,32 @@ public class PlayerStat : MonoBehaviour
         SpRecover();
         GaugeUpdate();
     }
+
+    private void ChangeHealCount(int count)
+    {
+        healCountText.text = count.ToString();
+    }
+
+    public void IncreseHealPack(int num)
+    {
+        healpack += num;
+        ChangeHealCount(healpack);
+    }
+
+    public void Heal()
+    {
+        if (healpack > 0)
+        {
+            IncreaseHP(30);
+            healpack -= 1;
+            ChangeHealCount(healpack);
+        }
+        else
+        {
+            Debug.Log("ÈúÆÑÀÌ ¾ø½À´Ï´Ù.");
+        }
+    }
+
 
     private void SPRechargeTime()
     {
