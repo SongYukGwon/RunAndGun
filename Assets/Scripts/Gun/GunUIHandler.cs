@@ -21,7 +21,6 @@ public class GunUIHandler : MonoBehaviour
 
     public void ChangeGunUI(int type)
     {
-        Debug.Log(type);
         gunImages[type].color = new Color(1, 1, 1, 1);
         gunAmmoImages[type].color = new Color(1, 1, 1, 1);
 

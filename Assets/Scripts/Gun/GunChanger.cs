@@ -35,13 +35,15 @@ public class GunChanger : MonoBehaviour
     [SerializeField]
     private GunController theGunController;
 
+    [SerializeField]
+    private string currentWeaponName;
+
     void Start()
     {
         for (int i = 0; i < guns.Length; i++)
         {
             gunDictionary.Add(guns[i].gunName, guns[i]);
         }
-
     }
 
     // Update is called once per frame
@@ -49,20 +51,23 @@ public class GunChanger : MonoBehaviour
     {
         if (!isChangeWeapon)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Alpha1) && !currentWeaponName.Equals("pistol"))
             {
                 StartCoroutine(ChangeWeaponCoroutine("pistol"));
                 gunUIHandler.ChangeGunUI(0);
+                currentWeaponName = "pistol";
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && !currentWeaponName.Equals("assult"))
             {
                 StartCoroutine(ChangeWeaponCoroutine("assult"));
                 gunUIHandler.ChangeGunUI(1);
+                currentWeaponName = "assult";
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            else if (Input.GetKeyDown(KeyCode.Alpha3) && !currentWeaponName.Equals("shotgun"))
             {
                 StartCoroutine(ChangeWeaponCoroutine("shotgun"));
                 gunUIHandler.ChangeGunUI(2);
+                currentWeaponName = "shotgun";
             }
         }
     }
