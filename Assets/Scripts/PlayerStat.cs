@@ -193,6 +193,8 @@ public class PlayerStat : MonoBehaviour
 
         level += 1;
         exp += 50;
+
+        FindObjectOfType<LevelUpPause>().LevelUp();
     }
 
 
