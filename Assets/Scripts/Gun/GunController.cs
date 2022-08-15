@@ -141,6 +141,7 @@ public class GunController : MonoBehaviour
         currentGun.muzzleFlash.Play(); // 총구화염
         Hit(); // 히트처리
         StopAllCoroutines(); 
+        
         StartCoroutine(RetroActionCoroutine());
     }
 
@@ -171,13 +172,18 @@ public class GunController : MonoBehaviour
         
     }
 
+    
     //반동 코루틴
     IEnumerator RetroActionCoroutine()
     {
         Vector3 recoilBack = new Vector3(originPos.x, originPos.y, currentGun.retroActionForce);
 
         currentGun.transform.position = originPos;
-         
+
+        currentGun.GetComponent<Animator>().SetTrigger("Attack");
+
+        yield return null;
+         /*
         //반동 시작
         while (currentGun.transform.position.z <= currentGun.retroActionForce - 0.02f)
         {
@@ -192,8 +198,10 @@ public class GunController : MonoBehaviour
             currentGun.transform.position = Vector3.Lerp(currentGun.transform.localPosition, originPos, 0.1f);
             yield return null;
         }
-
+         */
     }
+
+    
 
     //재장전 시도
     private void TryReload()
