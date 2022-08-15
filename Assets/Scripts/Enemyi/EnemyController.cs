@@ -137,7 +137,7 @@ public class EnemyController : MonoBehaviour
         nav.isStopped = true;
         thePlayerStat.IncreaseEXP(currentZombie.exp);
         FindObjectOfType<ObjectManager>().TrySpawnItem(gameObject.transform.position);
-        Destroy(gameObject, 3f);
+        //Destroy(gameObject, 3f);
     }
 
 
