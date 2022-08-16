@@ -4504,6 +4504,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1727788965}
     m_Modifications:
     - target: {fileID: 165516293209406321, guid: 000db0bdc473ede429b19e1533c8541b, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 9111721553566268728}
+    - target: {fileID: 165516293209406321, guid: 000db0bdc473ede429b19e1533c8541b, type: 3}
       propertyPath: range
       value: 20
       objectReference: {fileID: 0}
@@ -4620,6 +4624,10 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2010174141736241929, guid: f82dcbbda2873c144bc3d36f5a4d2296, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 8744291564984480952}
     - target: {fileID: 2010174141736241929, guid: f82dcbbda2873c144bc3d36f5a4d2296, type: 3}
       propertyPath: gunName
       value: pistol
@@ -4757,6 +4765,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5698778797031332182, guid: 776a4d8508949ad43875e7c409089b23, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 543450653538568664}
     - target: {fileID: 5698778797031332182, guid: 776a4d8508949ad43875e7c409089b23, type: 3}
       propertyPath: accuracy
       value: 0.02

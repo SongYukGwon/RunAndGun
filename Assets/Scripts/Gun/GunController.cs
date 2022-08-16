@@ -12,6 +12,7 @@ public class GunController : MonoBehaviour
     [SerializeField]
     private GunInfo currentGun;
 
+
     // 현재 연사 속도
     private float currentFireRate;
 
@@ -194,7 +195,7 @@ public class GunController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && !isReload && currentGun.currentBulletCount < currentGun.reloadBulletCount)
         {
             StartCoroutine(ReloadCouroutine());
-            currentGun.audioReload.Play();
+            
         }
     }
 
@@ -204,13 +205,13 @@ public class GunController : MonoBehaviour
         if (currentGun.carryBulletCount > 0)
         {
             isReload = true;
-            //currentGun.anim.SetTrigger("Reload");
+            currentGun.anim.SetTrigger("Reload");
 
             currentGun.carryBulletCount += currentGun.currentBulletCount;
             currentGun.currentBulletCount = 0;
 
             yield return new WaitForSeconds(currentGun.reloadTime);
-
+            currentGun.audioReload.Play();
             if (currentGun.carryBulletCount >= currentGun.reloadBulletCount)
             {
                 currentGun.currentBulletCount = currentGun.reloadBulletCount;

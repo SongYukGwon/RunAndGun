@@ -21,7 +21,7 @@ public class GunInfo : MonoBehaviour
 
     public Vector3 findSightOriginPos;
 
-    //public Animator anim;
+    public Animator anim;
 
     public ParticleSystem muzzleFlash;
 
