@@ -41,6 +41,8 @@ public class EnemyController : MonoBehaviour
     void Update()
     {
         TryMove();
+        TryAttack();
+        CalAttackSpeed();
     }
 
     private void SetZombieWalkORRun()
@@ -52,31 +54,36 @@ public class EnemyController : MonoBehaviour
         nav.speed = currentZombie.walkSpeed;
     }
 
-    //범위안에 플레이어가 들어왔을때 <수정필요>
-    void OnTriggerEnter(Collider collider)
+    private void CalAttackSpeed()
     {
-        if(collider.tag == "Player" && currentZombie.currentAttackSpeed == 0 && !currentZombie.isDead)
+        if(currentZombie.currentAttackSpeed > 0f)
+            currentZombie.currentAttackSpeed -= Time.deltaTime;
+    }
+
+    //범위안에 플레이어가 들어왔을때 <수정필요>
+
+
+    private void TryAttack()
+    {
+        if(Vector3.Distance(transform.position, target.position)<= 2.0f && currentZombie.currentAttackSpeed <= 0f)
         {
-            StartCoroutine(Attack(collider));
+            currentZombie.currentAttackSpeed = currentZombie.attackSpeed;
+            StartCoroutine(Attack(target.GetComponent<Collider>()));
         }
     }
+        
+   
 
 
     //공격 실행후 공격 쿨타임 세기
     IEnumerator Attack(Collider collider)
     {
-        Debug.Log("Player Hit");
         nav.isStopped = true;
-        collider.transform.gameObject.GetComponent<PlayerController>().Damaged(currentZombie.damage);
         anim.SetTrigger("Attack");
         currentZombie.isAttack = true;
-        currentZombie.currentAttackSpeed = currentZombie.attackSpeed;
-        while(currentZombie.currentAttackSpeed > 1.0f)
-        {
-            currentZombie.currentAttackSpeed -= Time.deltaTime;
-            yield return new WaitForFixedUpdate();
-        }
-        currentZombie.currentAttackSpeed = 0f;
+        yield return new WaitForSeconds(0.5f);
+        if (Vector3.Distance(transform.position, target.position) <= 2.0f)
+            collider.transform.gameObject.GetComponent<PlayerController>().Damaged(currentZombie.damage);
         currentZombie.isAttack = false;
         nav.isStopped = false;
         yield break;
@@ -125,8 +132,6 @@ public class EnemyController : MonoBehaviour
     }
 
 
-
-
     //죽는 함수
     protected void Dead()
     {
@@ -137,7 +142,7 @@ public class EnemyController : MonoBehaviour
         nav.isStopped = true;
         thePlayerStat.IncreaseEXP(currentZombie.exp);
         FindObjectOfType<ObjectManager>().TrySpawnItem(gameObject.transform.position);
-        //Destroy(gameObject, 3f);
+        Destroy(gameObject, 4f);
     }
 
 

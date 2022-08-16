@@ -1372,7 +1372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 3
-  attackSpeed: 1
+  attackSpeed: 2
   walkSpeed: 3
   runSpeed: 6
   damage: 1

@@ -165,7 +165,7 @@ public class GunController : MonoBehaviour
                 hitInfo.transform.GetComponent<EnemyController>().Damage(currentGun.damage, transform.position);
                 Destroy(clone, 2);
             }
-            else if(!hitInfo.transform.gameObject.CompareTag("Dead"))
+            else if(!hitInfo.transform.gameObject.CompareTag("Dead") && !hitInfo.transform.gameObject.CompareTag("Player"))
             {
                 clone = Instantiate(other_hit_prefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
                 Destroy(clone, 2);
