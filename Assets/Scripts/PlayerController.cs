@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody myRigid;
     [SerializeField]
     private PlayerStat playerStat;
+    [SerializeField]
+    private CrossHair theCrosshair;
 
     //히트처리 컴포넌트
     [SerializeField]
@@ -70,6 +72,7 @@ public class PlayerController : MonoBehaviour
         TryJump();
         TryRun();
         Move();
+
         CameraRotation();
         CharacterRotation();
         MoveCheck();
@@ -134,7 +137,7 @@ public class PlayerController : MonoBehaviour
             else
                 isWalk = false;
 
-            //theCrosshair.WalkingAnimation(isWalk);
+            theCrosshair.WalkingAnimation(isWalk);
             lastPos = transform.position;
         }
     }
@@ -146,7 +149,7 @@ public class PlayerController : MonoBehaviour
         //bounds.extends.y 영역의.반사이즈의.y크기 -> 오브젝트 영역의 y의 반의 크기만큼 레이저를 쏨
         //반환은 bool
         isGround = Physics.Raycast(transform.position, Vector3.down, capsuleCollider.bounds.extents.y + 0.1f);
-        //theCrosshair.JumpAnimation(!isGround);
+        theCrosshair.JumpAnimation(!isGround);
     }
 
     //점프시도
@@ -175,7 +178,7 @@ public class PlayerController : MonoBehaviour
     private void Running()
     {
         isRun = true;
-        //theCrosshair.RunningAnimation(isRun);
+        theCrosshair.RunningAnimation(isRun);
         playerStat.DecreaseStamina(10*Time.deltaTime);
         applySpeed = runSpeed;
     }
@@ -184,7 +187,7 @@ public class PlayerController : MonoBehaviour
     {
         isRun = false;
         applySpeed = walkSpeed;
-        //theCrosshair.RunningAnimation(isRun);
+        theCrosshair.RunningAnimation(isRun);
     }
 
     //점프

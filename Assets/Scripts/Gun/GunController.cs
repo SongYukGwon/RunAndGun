@@ -28,7 +28,8 @@ public class GunController : MonoBehaviour
     //필요한 컴포넌트
     [SerializeField]
     private Camera theCam;
-    //private CrossHair theCrossHair;
+    [SerializeField]
+    private CrossHair theCrossHair;
 
     //피격 이펙트
     //좀비 히트
@@ -148,28 +149,28 @@ public class GunController : MonoBehaviour
     private void Hit()
     {
 
-        //공격 범위 설정 방법 설정
-        //스코프는 동그라미로 할 것.
-        /*
+        RaycastHit hitInfo;
+        GameObject clone;
+        Debug.Log(theCrossHair.GetAccuracy());
+        Debug.Log(currentGun.accuracy);
         if (Physics.Raycast(theCam.transform.position, theCam.transform.forward +
             new Vector3(Random.Range(-theCrossHair.GetAccuracy() - currentGun.accuracy, theCrossHair.GetAccuracy() + currentGun.accuracy),
                         Random.Range(-theCrossHair.GetAccuracy() - currentGun.accuracy, theCrossHair.GetAccuracy() + currentGun.accuracy),
                         0),
-                        out hitInfo, currentGun.range, layerMask))
-        */
-        RaycastHit hitInfo;
-        GameObject clone;
-        if (Physics.Raycast(theCam.transform.position, theCam.transform.forward, out hitInfo,Mathf.Infinity, layerMaskEmemy))
+                        out hitInfo, currentGun.range, layerMaskEmemy))
         {
-            //Enemy일 경우 적 에너미에게 데미지를 줌.
             if (hitInfo.transform.gameObject.CompareTag("Enemy"))
             {
                 clone = Instantiate(zombie_hit_prefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
                 hitInfo.transform.GetComponent<EnemyController>().Damage(currentGun.damage, transform.position);
                 Destroy(clone, 2);
             }
+            else if(!hitInfo.transform.gameObject.CompareTag("Dead"))
+            {
+                clone = Instantiate(other_hit_prefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+                Destroy(clone, 2);
+            }
         }
-        
     }
 
     
@@ -183,22 +184,6 @@ public class GunController : MonoBehaviour
         currentGun.GetComponent<Animator>().SetTrigger("Attack");
 
         yield return null;
-         /*
-        //반동 시작
-        while (currentGun.transform.position.z <= currentGun.retroActionForce - 0.02f)
-        {
-            currentGun.transform.position = Vector3.Lerp(currentGun.transform.localPosition, recoilBack, Time.deltaTime *0.4f);
-            yield return null;
-        }
-
-        //원위치
-
-        while (currentGun.transform.position != originPos)
-        {
-            currentGun.transform.position = Vector3.Lerp(currentGun.transform.localPosition, originPos, 0.1f);
-            yield return null;
-        }
-         */
     }
 
     
