@@ -53,6 +53,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 originRotation;
 
+    private bool levelUpdate;
 
 
     // Start is called before the first frame update
@@ -63,6 +64,7 @@ public class PlayerController : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider>();
         applySpeed = walkSpeed;
         originPosY = theCamera.transform.localPosition.y;
+        levelUpdate = false;
     }
 
     // Update is called once per frame
@@ -72,13 +74,19 @@ public class PlayerController : MonoBehaviour
         TryJump();
         TryRun();
         Move();
-
-        CameraRotation();
-        CharacterRotation();
-        MoveCheck();
-        TryHeal();
+        if(!levelUpdate)
+        {
+            CameraRotation();
+            CharacterRotation();
+            MoveCheck();
+            TryHeal();
+        }
     }
 
+    public void ChangeLevelUpdate(bool flag)
+    {
+        levelUpdate = flag;
+    }
 
     private void TryHeal()
     {
