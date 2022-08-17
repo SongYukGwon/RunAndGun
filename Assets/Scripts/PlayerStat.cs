@@ -80,7 +80,6 @@ public class PlayerStat : MonoBehaviour
 
     public void UpgradeStat(int statusType)
     {
-        Debug.Log("업그레이드 적용");
         switch(statusType)
         {
             case (0):
@@ -214,10 +213,8 @@ public class PlayerStat : MonoBehaviour
     public void IncreaseEXP(int getExp)
     {
         currentExp += getExp;
-        Debug.Log(currentExp);
         if (currentExp >= exp)
         {
-            Debug.Log("LevelUp");
             LevelUp();
         }
     }
@@ -239,7 +236,6 @@ public class PlayerStat : MonoBehaviour
         if (currentHp - dam > 0)
         {
             currentHp -= dam;
-            Debug.Log(currentHp);
         }
         else
         {

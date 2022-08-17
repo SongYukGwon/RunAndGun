@@ -155,8 +155,6 @@ public class GunController : MonoBehaviour
 
         RaycastHit hitInfo;
         GameObject clone;
-        Debug.Log(theCrossHair.GetAccuracy());
-        Debug.Log(currentGun.accuracy);
         if (Physics.Raycast(theCam.transform.position, theCam.transform.forward +
             new Vector3(Random.Range(-theCrossHair.GetAccuracy() - currentGun.accuracy, theCrossHair.GetAccuracy() + currentGun.accuracy),
                         Random.Range(-theCrossHair.GetAccuracy() - currentGun.accuracy, theCrossHair.GetAccuracy() + currentGun.accuracy),
