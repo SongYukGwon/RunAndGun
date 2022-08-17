@@ -60,6 +60,7 @@ public class PlayerStat : MonoBehaviour
     public int addAttackSpeed=0;
     public int addMaxHp=0;
     public int healScale=0;
+    public int addMaxSp = 0;
 
     void Start()
     {
@@ -93,6 +94,7 @@ public class PlayerStat : MonoBehaviour
                 addAttackSpeed += 1;
                 break;
             case (3):
+                addMaxSp += 1;
                 sp += 20;
                 break;
             case (4):
