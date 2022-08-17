@@ -15,11 +15,15 @@ public class UpSelect : MonoBehaviour, IPointerClickHandler
     private int statusType;
 
 
+    //ui가 클릭되어있을때 업그레이드를 진행하고 게임재게
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("클릭"+transform.name);
+        FindObjectOfType<PlayerStat>().UpgradeStat(statusType);
+        FindObjectOfType<LevelUpPause>().ChangeActive();
     }
 
+
+    //들어온 num에따라 ui표시되는 것이 달라짐.
     public void RandomStatusSetting(int num)
     {
         statusType = num;

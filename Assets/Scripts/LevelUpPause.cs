@@ -22,6 +22,8 @@ public class LevelUpPause : MonoBehaviour
         seletedStatus = new List<int>();
     }
 
+
+    //게임진행 멈춤 or 진행
     private void ChangeTimeScale()
     {
         if (isPause)
@@ -30,6 +32,20 @@ public class LevelUpPause : MonoBehaviour
             Time.timeScale = 0;
     }
 
+
+    //업그레이드 완료시 실행되는 함수
+    public void ChangeActive()
+    {
+        isPause = true;
+        ChangeTimeScale();
+        FindObjectOfType<PlayerController>().ChangeLevelUpdate(false);
+        seletedStatus.Clear();
+        selectObject.SetActive(false);
+    }
+
+
+    //레벨업시 실행되는함수
+    //게임진행을 막고 업그레이드 UI를 표출
     public void LevelUp()
     {
         isPause = false;

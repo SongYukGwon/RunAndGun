@@ -49,6 +49,9 @@ public class GunController : MonoBehaviour
     // 특정 레이어 마스크 지정
     int layerMaskEmemy;
 
+    //증가한 능력치를 적용하기 위한 컴포넌트
+    [SerializeField]
+    private PlayerStat thePlayerStat;
 
     // Start is called before the first frame update
     void Start()
@@ -139,7 +142,7 @@ public class GunController : MonoBehaviour
     {
         // theCrossHair.FireAnimation();
         currentGun.currentBulletCount--;
-        currentFireRate = currentGun.fireRate; // 연사속도 재계산
+        currentFireRate = currentGun.fireRate - (0.01f * thePlayerStat.addAttackSpeed); // 연사속도 재계산
         currentGun.muzzleFlash.Play(); // 총구화염
         Hit(); // 히트처리
         StopAllCoroutines(); 
@@ -163,7 +166,7 @@ public class GunController : MonoBehaviour
             if (hitInfo.transform.gameObject.CompareTag("Enemy"))
             {
                 clone = Instantiate(zombie_hit_prefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-                hitInfo.transform.GetComponent<EnemyController>().Damage(currentGun.damage, transform.position);
+                hitInfo.transform.GetComponent<EnemyController>().Damage(currentGun.damage + thePlayerStat.addAttack, transform.position);
                 Destroy(clone, 2);
             }
             else if(!hitInfo.transform.gameObject.CompareTag("Dead") && !hitInfo.transform.gameObject.CompareTag("Player"))

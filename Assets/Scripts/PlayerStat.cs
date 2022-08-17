@@ -53,6 +53,14 @@ public class PlayerStat : MonoBehaviour
 
     private int healpack;
 
+
+
+    //레벨업 스테이터스
+    public int addAttack=0;
+    public int addAttackSpeed=0;
+    public int addMaxHp=0;
+    public int healScale=0;
+
     void Start()
     {
         currentHp = 50;
@@ -69,6 +77,31 @@ public class PlayerStat : MonoBehaviour
         GaugeUpdate();
     }
 
+    public void UpgradeStat(int statusType)
+    {
+        Debug.Log("업그레이드 적용");
+        switch(statusType)
+        {
+            case (0):
+                addMaxHp += 1;
+                hp += 20;
+                break;
+            case (1):
+                addAttack += 1;
+                break;
+            case (2):
+                addAttackSpeed += 1;
+                break;
+            case (3):
+                sp += 20;
+                break;
+            case (4):
+                healScale += 1;
+                break;
+        }
+    }
+
+
     private void ChangeHealCount(int count)
     {
         healCountText.text = count.ToString();
@@ -84,7 +117,7 @@ public class PlayerStat : MonoBehaviour
     {
         if (healpack > 0)
         {
-            IncreaseHP(30);
+            IncreaseHP(healScale*10 + 30);
             healpack -= 1;
             ChangeHealCount(healpack);
         }
