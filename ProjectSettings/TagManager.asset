@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Enemy
   - Dead
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Environment
   - Water
   - UI
   - Weapone
