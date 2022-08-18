@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator DamageAnim()
     {
         Color a = new Color(1, 0, 0, 0.2f);
-        Color originColor = hitedImage.color;
+        Color originColor = new Color(0,0,0,0);
         hitedImage.color = a;
 
         Vector3 startPosition = theCamera.transform.eulerAngles;
