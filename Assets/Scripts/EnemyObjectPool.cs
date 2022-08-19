@@ -1,21 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-/*
-public class BulletEffectObjectPool : MonoBehaviour
+
+public class EnemyObjectPool : MonoBehaviour
 {
-     public static ObjectPool Instance;
+     public static EnemyObjectPool Instance;
 
     [SerializeField]
     private GameObject poolingObjectPrefab;
 
-    Queue<Bullet> poolingObjectQueue = new Queue<Bullet>();
+    Queue<GameObject> poolingObjectQueue = new Queue<GameObject>();
 
     private void Awake()
     {
         Instance = this;
-
-        Initialize(10);
+        Initialize(150);
     }
 
     private void Initialize(int initCount)
@@ -26,15 +25,15 @@ public class BulletEffectObjectPool : MonoBehaviour
         }
     }
 
-    private Bullet CreateNewObject()
+    private GameObject CreateNewObject()
     {
-        var newObj = Instantiate(poolingObjectPrefab).GetComponent<Bullet>();
+        var newObj = Instantiate(poolingObjectPrefab);
         newObj.gameObject.SetActive(false);
         newObj.transform.SetParent(transform);
         return newObj;
     }
 
-    public static Bullet GetObject()
+    public static GameObject GetObject()
     {
         if(Instance.poolingObjectQueue.Count > 0)
         {
@@ -52,7 +51,7 @@ public class BulletEffectObjectPool : MonoBehaviour
         }
     }
 
-    public static void ReturnObject(Bullet obj)
+    public static void ReturnObject(GameObject obj)
     {
         obj.gameObject.SetActive(false);
         obj.transform.SetParent(Instance.transform);
@@ -60,4 +59,3 @@ public class BulletEffectObjectPool : MonoBehaviour
     }
 
 }
-*/

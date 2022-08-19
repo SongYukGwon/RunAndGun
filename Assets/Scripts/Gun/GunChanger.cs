@@ -102,7 +102,6 @@ public class GunChanger : MonoBehaviour
         CancelPreWeaponAction();
 
         WeaponChange(_name);
-        currentWeaponAnim.SetTrigger("WeaponIn");
         yield return new WaitForSeconds(changeWeaponEndDelayTime);
 
         isChangeWeapon = false;

@@ -6,9 +6,6 @@ using UnityEngine;
 //오브젝트풀 사용 예정
 public class EnemySpawn : MonoBehaviour
 {
-    //소환할 적 오브젝트
-    [SerializeField]
-    private GameObject enemy;
 
     [SerializeField]
     private int enemyCount;
@@ -37,6 +34,11 @@ public class EnemySpawn : MonoBehaviour
         {
             StartCoroutine(Spawn());
         }
+        else if(endStage)
+        {
+            currentEnemyCount += 5;
+            endStage = false;
+        }
     }
 
     private IEnumerator Spawn()
@@ -45,8 +47,13 @@ public class EnemySpawn : MonoBehaviour
         for(int j =0; j< currentEnemyCount; j++)
         {
             Vector3 ranPos = GetRandomEnemySpawnPosition();
-            Instantiate(enemy, ranPos, Quaternion.identity);
-            currentEnemyCount--;
+            for (int i = 0; i < stage; i++)
+            {
+                GameObject em = EnemyObjectPool.GetObject();
+                em.transform.position = ranPos;
+                em.transform.rotation = Quaternion.identity;
+                currentEnemyCount--;
+            }
             yield return new WaitForSeconds(3f);
         }
         endStage = true;
@@ -56,7 +63,7 @@ public class EnemySpawn : MonoBehaviour
 
     private Vector3 GetRandomEnemySpawnPosition()
     {
-        float radius = 3f;
+        float radius = 5f;
         Vector3 playerPosition = transform.position;
 
         float a = playerPosition.x;

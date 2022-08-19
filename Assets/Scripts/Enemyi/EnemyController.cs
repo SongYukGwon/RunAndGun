@@ -124,7 +124,7 @@ public class EnemyController : MonoBehaviour
             rigid.AddForce(reactVec.normalized*50 , ForceMode.Impulse);
             if (currentZombie.hp <= 0)
             {
-                Dead();
+                StartCoroutine(Dead());
                 return;
             }
 
@@ -133,7 +133,7 @@ public class EnemyController : MonoBehaviour
 
 
     //죽는 함수
-    protected void Dead()
+    protected IEnumerator Dead()
     {
         gameObject.tag = "Dead";
         gameObject.layer = layerDead;
@@ -144,7 +144,9 @@ public class EnemyController : MonoBehaviour
 
         //오브젝트풀로 수정 예정
         FindObjectOfType<ObjectManager>().TrySpawnItem(gameObject.transform.position);
-        Destroy(gameObject, 4f);
+
+        yield return new WaitForSeconds(4f);
+        EnemyObjectPool.ReturnObject(gameObject);
     }
 
 
