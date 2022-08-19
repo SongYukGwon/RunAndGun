@@ -14,7 +14,7 @@ public class EnemyObjectPool : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        Initialize(150);
+        Initialize(12);
     }
 
     private void Initialize(int initCount)

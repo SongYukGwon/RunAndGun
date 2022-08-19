@@ -7,6 +7,9 @@ public class ZombieInfo : MonoBehaviour
     //좀비 hp
     public int hp;
 
+    //좀비 현재 hp
+    public int currentHp;
+
     //좀비의 공격 속도
     public float attackSpeed;
 

@@ -5,36 +5,46 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-    private PlayerStat thePlayerStat;
 
     NavMeshAgent nav;
+
     private Transform target;
 
-    //특정 레이어 지정
-    int layerDead;
+    //데드 레이어 지정
+    int layerDead = 9;
+    //에너미 레이어 지정
+    int layerEnemy = 7;
+
 
     //좀비 정보
-    [SerializeField]
     private ZombieInfo currentZombie;
 
     //좀비의 필요한 컴포넌트
+    private PlayerStat thePlayerStat;
     private Animator anim;
     private Rigidbody rigid;
     private CapsuleCollider col;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        target = GameObject.Find("Player").transform;
-        thePlayerStat = GameObject.Find("Stat").GetComponent<PlayerStat>();
-        nav = GetComponent<NavMeshAgent>();
-        anim = currentZombie.GetComponent<Animator>();
-        rigid = currentZombie.GetComponent<Rigidbody>();
-        col = currentZombie.GetComponent<CapsuleCollider>();
 
+
+    // Start is called before the first frame update
+    void OnEnable()
+    {
+        thePlayerStat = FindObjectOfType<PlayerStat>();
+        target = GameObject.Find("Player").GetComponent<Transform>();
+        nav = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
+        rigid = GetComponent<Rigidbody>();
+        col = GetComponent<CapsuleCollider>();
+        currentZombie = GetComponent<ZombieInfo>();
+
+        currentZombie.currentHp = currentZombie.hp;
+
+        gameObject.tag = "Enemy";
+        gameObject.layer = layerEnemy;
+        currentZombie.isDead = false;
         nav.SetDestination(target.position);
         SetZombieWalkORRun();
-        layerDead = 9;
     }
 
     // Update is called once per frame
@@ -118,11 +128,11 @@ public class EnemyController : MonoBehaviour
         if (!currentZombie.isDead)
         {
 
-            currentZombie.hp -= _dmg;
+            currentZombie.currentHp -= _dmg;
             Vector3 reactVec = transform.position - _targetPos;
 
             rigid.AddForce(reactVec.normalized*50 , ForceMode.Impulse);
-            if (currentZombie.hp <= 0)
+            if (currentZombie.currentHp <= 0)
             {
                 StartCoroutine(Dead());
                 return;

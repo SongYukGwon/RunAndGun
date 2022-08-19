@@ -1358,6 +1358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd8b0afcf3b201242b0bafeb41f53351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 8154734602093927871, guid: bafbce6f68776bd4f86226c37ebecfed, type: 3}
   currentZombie: {fileID: 5084824494427587942}
 --- !u!114 &5084824494427587942
 MonoBehaviour:
@@ -1372,6 +1373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 3
+  currentHp: 0
   attackSpeed: 2
   walkSpeed: 3
   runSpeed: 6
