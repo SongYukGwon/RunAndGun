@@ -4,18 +4,25 @@ using UnityEngine;
 
 public class Heal : ItemInfo
 {
-    protected override void ItemEffet(Collider other)
+
+    private PlayerStat thePlayerStat;
+
+    private void Start()
     {
-        if (other.tag == "Player")
-        {
-            Debug.Log("ÈúÆÑÀ» ¸Ô¾ú½À´Ï´Ù.");
-            FindObjectOfType<PlayerStat>().IncreseHealPack(1);
-            Destroy(gameObject);
-        }
+        thePlayerStat = FindObjectOfType<PlayerStat>();
+    }
+
+    protected override void ItemEffet()
+    {
+        thePlayerStat.IncreseHealPack(1);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        ItemEffet(other);
+        if (other.tag == "Player")
+        {
+            ItemEffet();
+        }
     }
 }

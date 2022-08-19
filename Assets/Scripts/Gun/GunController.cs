@@ -31,6 +31,8 @@ public class GunController : MonoBehaviour
     private Camera theCam;
     [SerializeField]
     private CrossHair theCrossHair;
+    [SerializeField]
+    private GunChanger theGunChanger;
 
     //피격 이펙트
     //좀비 히트
@@ -76,7 +78,7 @@ public class GunController : MonoBehaviour
 
     public void IncreseAmmo(string type)
     {
-        FindObjectOfType<GunChanger>().IncreseAmmo(type);
+        theGunChanger.IncreseAmmo(type);
     }
 
     private void AmmoTextUpdate()

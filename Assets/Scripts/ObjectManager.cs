@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//오브젝트풀 사용 필요.
 public class ObjectManager : MonoBehaviour
 {
     //0 Ammo, 1 heal  등장

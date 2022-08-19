@@ -7,5 +7,5 @@ public abstract class ItemInfo : MonoBehaviour
     [SerializeField]
     protected string type;
 
-    protected abstract void ItemEffet(Collider other);
+    protected abstract void ItemEffet();
 }

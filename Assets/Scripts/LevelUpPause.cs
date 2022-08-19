@@ -3,16 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+//레벨업시 실행되는 클래스
+// 사용자의 능력치 상승을 위함.
 public class LevelUpPause : MonoBehaviour
 {
 
+
+    //멈춰있는 상태
     bool isPause;
 
+    //필요한 컴포넌트
     [SerializeField]
     private Image[] selectUI;
     [SerializeField]
     private GameObject selectObject;
+    [SerializeField]
+    private PlayerController thePlayerController;
 
+
+    //표시하기로 선택된 능력들을 알기위한 리스트
     private List<int> seletedStatus;
 
     // Start is called before the first frame update
@@ -38,7 +48,7 @@ public class LevelUpPause : MonoBehaviour
     {
         isPause = true;
         ChangeTimeScale();
-        FindObjectOfType<PlayerController>().ChangeLevelUpdate(false);
+        thePlayerController.ChangeLevelUpdate(false);
         seletedStatus.Clear();
         selectObject.SetActive(false);
     }
@@ -50,8 +60,10 @@ public class LevelUpPause : MonoBehaviour
     {
         isPause = false;
         ChangeTimeScale();
-        FindObjectOfType<PlayerController>().ChangeLevelUpdate(true);
+        thePlayerController.ChangeLevelUpdate(true);
         selectObject.SetActive(true);
+
+        //랜덤값을 얻어서 리스트안에 없으면 해당 숫자를 RandomStatusSetting으로 넘겨줌.
         int i = 0;
         while (i<selectUI.Length) 
         {
@@ -67,7 +79,5 @@ public class LevelUpPause : MonoBehaviour
                 i += 1;
             }
         }
-
-        
     }
 }

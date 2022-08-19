@@ -141,6 +141,8 @@ public class EnemyController : MonoBehaviour
         anim.SetTrigger("DieFront");
         nav.isStopped = true;
         thePlayerStat.IncreaseEXP(currentZombie.exp);
+
+        //오브젝트풀로 수정 예정
         FindObjectOfType<ObjectManager>().TrySpawnItem(gameObject.transform.position);
         Destroy(gameObject, 4f);
     }

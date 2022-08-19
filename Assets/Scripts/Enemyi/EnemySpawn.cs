@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//오브젝트풀 사용 예정
 public class EnemySpawn : MonoBehaviour
 {
     //소환할 적 오브젝트
@@ -48,6 +50,7 @@ public class EnemySpawn : MonoBehaviour
             yield return new WaitForSeconds(3f);
         }
         endStage = true;
+        isSpawn = false;
         currentEnemyCount = enemyCount;
     }
 

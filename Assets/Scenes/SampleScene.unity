@@ -824,6 +824,8 @@ MonoBehaviour:
   title: {fileID: 1775315083}
   content: {fileID: 1548971245}
   lv: {fileID: 467508634}
+  thePlayerStat: {fileID: 632656965}
+  theLevelUpPause: {fileID: 2146619353}
 --- !u!4 &170693675 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 456768, guid: 89d3804ae1d951b42a266ad900c34eaf, type: 3}
@@ -924,6 +926,8 @@ MonoBehaviour:
   title: {fileID: 242710546}
   content: {fileID: 1120969525}
   lv: {fileID: 1517902768}
+  thePlayerStat: {fileID: 632656965}
+  theLevelUpPause: {fileID: 2146619353}
 --- !u!1 &238361606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1647,6 +1651,8 @@ MonoBehaviour:
   title: {fileID: 510218258}
   content: {fileID: 1485811406}
   lv: {fileID: 311942265}
+  thePlayerStat: {fileID: 632656965}
+  theLevelUpPause: {fileID: 2146619353}
 --- !u!1 &362329523
 GameObject:
   m_ObjectHideFlags: 0
@@ -5124,6 +5130,7 @@ MonoBehaviour:
   originPos: {x: 0, y: 0, z: 0}
   theCam: {fileID: 1507581045}
   theCrossHair: {fileID: 270448578}
+  theGunChanger: {fileID: 1392917586}
   zombie_hit_prefab: {fileID: 4643867220364201670, guid: 2df493abc3816434a9995b57f3d68c7a, type: 3}
   other_hit_prefab: {fileID: 8772752551415281232, guid: 35e6b7b29603ab74eb7523b3794a1a16, type: 3}
   currentAmmoText: {fileID: 630977786}
@@ -8941,6 +8948,7 @@ MonoBehaviour:
   - {fileID: 199820131}
   - {fileID: 164727120}
   selectObject: {fileID: 969622263}
+  thePlayerController: {fileID: 1763703213}
 --- !u!4 &2146619354
 Transform:
   m_ObjectHideFlags: 0
