@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 public enum GameState
 {
     menu,
     inGame,
-    gameOver
+    gameOver,
+    gameClear
 }
 
 public class GameManager : MonoBehaviour
@@ -21,6 +24,14 @@ public class GameManager : MonoBehaviour
     private GameObject gameMenuImg;
     [SerializeField]
     private GameObject gameEndingImg;
+    [SerializeField]
+    private GameObject gameClearImg;
+
+
+    [SerializeField]
+    private TextMeshProUGUI clearScoreText;
+    [SerializeField]
+    private TextMeshProUGUI overScoreText;
 
     private void Awake()
     {
@@ -41,12 +52,19 @@ public class GameManager : MonoBehaviour
 
     public void OnClickStartButton()
     {
+        Debug.Log("게임시작");
         SetGameState(GameState.inGame);
     }
 
     public void OnClickGameMenuButton()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void OnClickExitButton()
+    {
+        Debug.Log("게임종료");
+        Application.Quit();
     }
 
     void SetGameState(GameState newGameState)
@@ -67,17 +85,23 @@ public class GameManager : MonoBehaviour
                 gameEndingImg.SetActive(true);
                 ChangeTimeScale(false);
                 break;
+            case (GameState.gameClear):
+                gameClearImg.SetActive(true);
+                ChangeTimeScale(false);
+                break;
         }
         currentGameState = newGameState;
     }
 
-    public void GameOver()
+    public void GameOver(int score)
     {
         SetGameState(GameState.gameOver);
+        overScoreText.text = "Kill : " + score.ToString();
     }
 
-    public void BackToMenu()
+    public void GameClear(int score)
     {
-
+        SetGameState(GameState.gameClear);
+        clearScoreText.text = "Kill : " + score.ToString();
     }
 }

@@ -53,6 +53,7 @@ public class PlayerStat : MonoBehaviour
 
     private int healpack;
 
+    public int score;
 
 
     //레벨업 스테이터스
@@ -69,6 +70,7 @@ public class PlayerStat : MonoBehaviour
         currentDp = dp;
         level = 1;
         healpack = 0;
+        score = 0;
     }
 
     private void Update()
@@ -247,6 +249,16 @@ public class PlayerStat : MonoBehaviour
     //죽는 함수
     private void Die()
     {
-        GameManager.instance.GameOver();
+        GameManager.instance.GameOver(score);
+    }
+
+    public void IncreseScore(int num)
+    {
+        score += num;
+    }
+
+    public int GetScore()
+    {
+        return score;
     }
 }
