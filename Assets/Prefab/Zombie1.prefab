@@ -1342,10 +1342,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.2
+  m_Height: 1.8
   m_Direction: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &1365909567026142411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1358,8 +1358,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd8b0afcf3b201242b0bafeb41f53351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 8154734602093927871, guid: bafbce6f68776bd4f86226c37ebecfed, type: 3}
-  currentZombie: {fileID: 5084824494427587942}
 --- !u!114 &5084824494427587942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1374,9 +1372,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 3
   currentHp: 0
-  attackSpeed: 2
-  walkSpeed: 3
-  runSpeed: 6
+  attackSpeed: 3
+  walkSpeed: 2
+  runSpeed: 4
   damage: 1
   exp: 2
   itemSpawnPer: 0.2
@@ -2990,7 +2988,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1523026477817239048}
   - component: {fileID: 6170131331247536811}
-  - component: {fileID: 5194971737087740383}
   m_Layer: 7
   m_Name: Z_Body
   m_TagString: Untagged
@@ -3070,19 +3067,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.2738102, y: 0.04886008, z: 0.000000022351742}
     m_Extent: {x: 0.19489695, y: 0.16547251, z: 0.15937948}
   m_DirtyAABB: 0
---- !u!65 &5194971737087740383
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9139923927358415224}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.31875902, y: 0.33230305, z: 0.39094627}
-  m_Center: {x: 0.000000015071022, y: 0.0021123774, z: 1.1538321}
 --- !u!1 &9142067370367980550
 GameObject:
   m_ObjectHideFlags: 0

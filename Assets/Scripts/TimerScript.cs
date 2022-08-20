@@ -12,6 +12,11 @@ public class TimerScript : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI timerText;
 
+    [SerializeField]
+    private EnemySpawn theEnemySpawner;
+
+    [SerializeField]
+    private PlayerStat thePlayerStat;
     
     // Update is called once per frame
     void Update()
@@ -29,11 +34,11 @@ public class TimerScript : MonoBehaviour
         {
             sec = 0;
             min++;
+            theEnemySpawner.updatedStage(min);
         }
-
-        if(min == 30)
+        if(min == 10)
         {
-
+            GameManager.instance.GameClear(thePlayerStat.GetScore());
         }
     }
 }

@@ -28,6 +28,12 @@ public class EnemySpawn : MonoBehaviour
         TrySpawnEnemy();
     }
 
+    public void updatedStage(int num)
+    {
+        stage = num;
+    }
+
+
     private void TrySpawnEnemy()
     {
         if (!endStage && !isSpawn)
@@ -46,24 +52,25 @@ public class EnemySpawn : MonoBehaviour
         isSpawn = true;
         for(int j =0; j< currentEnemyCount; j++)
         {
-            Vector3 ranPos = GetRandomEnemySpawnPosition();
-            for (int i = 0; i < stage; i++)
+            for (int i = 0; i < stage*3; i++)
             {
+                Vector3 ranPos = GetRandomEnemySpawnPosition();
                 GameObject em = EnemyObjectPool.GetObject();
                 em.transform.position = ranPos;
+                em.GetComponent<ZombieInfo>().SetStatus(stage);
                 em.transform.rotation = Quaternion.identity;
                 currentEnemyCount--;
             }
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(3f - stage/10);
         }
         endStage = true;
         isSpawn = false;
-        currentEnemyCount = enemyCount;
+        yield return new WaitForSeconds(10f);
     }
 
     private Vector3 GetRandomEnemySpawnPosition()
-    {
-        float radius = 5f;
+    { 
+        float radius = 20f;
         Vector3 playerPosition = transform.position;
 
         float a = playerPosition.x;

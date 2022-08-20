@@ -35,4 +35,10 @@ public class ZombieInfo : MonoBehaviour
     public bool isDead = false;
     public float currentAttackSpeed = 0f;
 
+    public void SetStatus(int stage)
+    {
+        hp = stage + 1;
+        currentHp = hp;
+    }
+
 }

@@ -57,11 +57,19 @@ public class EnemyController : MonoBehaviour
 
     private void SetZombieWalkORRun()
     {
-        if (currentZombie.walkSpeed <= 3f)
+        float speed = Random.Range(currentZombie.walkSpeed, currentZombie.runSpeed);
+
+        if (speed <= 3f)
+        {
             currentZombie.isWalking = true;
+            currentZombie.isRunning = false;
+        }
         else
+        {
+            currentZombie.isWalking = false;
             currentZombie.isRunning = true;
-        nav.speed = currentZombie.walkSpeed;
+        }
+        nav.speed = speed;
     }
 
     private void CalAttackSpeed()
@@ -119,7 +127,7 @@ public class EnemyController : MonoBehaviour
         {
             anim.SetBool("Walk", true);
         }
-            nav.SetDestination(target.transform.position);
+        nav.SetDestination(target.transform.position);
     }
 
     //데미지 받는 함수

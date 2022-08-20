@@ -9,6 +9,7 @@ public class EnemyObjectPool : MonoBehaviour
     [SerializeField]
     private GameObject poolingObjectPrefab;
 
+
     Queue<GameObject> poolingObjectQueue = new Queue<GameObject>();
 
     private void Awake()

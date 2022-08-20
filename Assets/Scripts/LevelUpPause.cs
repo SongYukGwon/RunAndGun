@@ -50,7 +50,7 @@ public class LevelUpPause : MonoBehaviour
 
         //랜덤값을 얻어서 리스트안에 없으면 해당 숫자를 RandomStatusSetting으로 넘겨줌.
         int i = 0;
-        while (i<selectUI.Length) 
+        while (i<selectUI.Length)      
         {
             int num = Random.Range(0, 4);
             if(seletedStatus.Contains(num))
