@@ -16,7 +16,20 @@ public class Ammo : ItemInfo
     protected override void ItemEffet()
     {
         gunController.IncreseAmmo(type);
-        Destroy(gameObject);
+        int a = 0;
+        switch(type)
+        {
+            case ("assult"):
+                a = 0;
+                break;
+            case ("shotgun"):
+                a = 1;
+                break;
+            case ("all"):
+                a = 2;
+                break;
+        }
+        ObjectManager.ReturnAmmoObject(this, a);
     }
 
     private void OnTriggerEnter(Collider other)

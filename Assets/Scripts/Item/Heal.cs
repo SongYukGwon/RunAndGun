@@ -16,7 +16,7 @@ public class Heal : ItemInfo
     protected override void ItemEffet()
     {
         thePlayerStat.IncreseHealPack(1);
-        Destroy(gameObject);
+        ObjectManager.ReturnHealObject(this);
     }
 
     private void OnTriggerEnter(Collider other)
