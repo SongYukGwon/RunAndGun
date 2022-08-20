@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI overScoreText;
 
+    private TimerScript theTimer;
+
     private void Awake()
     {
         instance = this;
