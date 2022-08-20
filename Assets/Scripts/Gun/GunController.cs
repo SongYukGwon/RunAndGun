@@ -55,7 +55,6 @@ public class GunController : MonoBehaviour
     [SerializeField]
     private PlayerStat thePlayerStat;
 
-    // Start is called before the first frame update
     void Start()
     {
         originPos = Vector3.zero;
@@ -64,7 +63,6 @@ public class GunController : MonoBehaviour
         GunChanger.currentWeaponAnim = currentGun.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isActivate)
@@ -76,11 +74,14 @@ public class GunController : MonoBehaviour
         }
     }
 
+
+    // 타입에따른 탄약 증가
     public void IncreseAmmo(string type)
     {
         theGunChanger.IncreseAmmo(type);
     }
 
+    // 탄약 소지 개수 업데이트 함수
     private void AmmoTextUpdate()
     {
         currentAmmoText.text = currentGun.currentBulletCount.ToString();
@@ -116,6 +117,7 @@ public class GunController : MonoBehaviour
         }
     }
 
+    //재장전 취소
     public void CancelReload()
     {
         if (isReload)
@@ -125,10 +127,13 @@ public class GunController : MonoBehaviour
         }
     }
 
+
+    //총 바꾸는 함수
     public void GunChange(GunInfo _gun)
     {
         if (currentGun != null)
             currentGun.gameObject.SetActive(false);
+
         currentGun = _gun;
         GunChanger.currentWeapon = currentGun.GetComponent<Transform>();
         GunChanger.currentWeaponAnim = currentGun.GetComponent<Animator>();
@@ -152,6 +157,9 @@ public class GunController : MonoBehaviour
         StartCoroutine(RetroActionCoroutine());
     }
 
+
+    //정확도에따라 hit처리하는 함수
+    //적에 맞으면 빨간색 효과 아니면 검은색 효과를 냄
     private void Hit()
     {
 

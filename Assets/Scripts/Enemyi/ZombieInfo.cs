@@ -35,9 +35,12 @@ public class ZombieInfo : MonoBehaviour
     public bool isDead = false;
     public float currentAttackSpeed = 0f;
 
+
+    //좀비의 스탯을 설정하는 함수
+    // 스테이지에따라 점차 좀비의 스탯이 늘어남.
     public void SetStatus(int stage)
     {
-        hp = stage + 1;
+        hp = (stage*2) + 1;
         currentHp = hp;
     }
 

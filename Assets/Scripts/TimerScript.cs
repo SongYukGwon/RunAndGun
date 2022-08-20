@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+//타이머 스크립트
 public class TimerScript : MonoBehaviour
 {
 
@@ -24,6 +25,7 @@ public class TimerScript : MonoBehaviour
         Timer();
     }
 
+    //타이머 계산후 출력하는 함수
     private void Timer()
     {
         sec += Time.deltaTime;

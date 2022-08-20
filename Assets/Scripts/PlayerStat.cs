@@ -80,6 +80,7 @@ public class PlayerStat : MonoBehaviour
         GaugeUpdate();
     }
 
+    //업그레이드 종류에 따른 능력치 증가 함수
     public void UpgradeStat(int statusType)
     {
         switch(statusType)
@@ -104,18 +105,20 @@ public class PlayerStat : MonoBehaviour
         }
     }
 
-
+    //heal 아이템 갯수 증가 표시 함수
     private void ChangeHealCount(int count)
     {
         healCountText.text = count.ToString();
     }
 
+    //heal 아이템 갯수 증가 함수
     public void IncreseHealPack(int num)
     {
         healpack += num;
         ChangeHealCount(healpack);
     }
 
+    //플레이어 currentHp 증가 함수
     public void Heal()
     {
         if (healpack > 0)
@@ -130,7 +133,7 @@ public class PlayerStat : MonoBehaviour
         }
     }
 
-
+    //sp 재충전 대기시간 함수
     private void SPRechargeTime()
     {
         if (spUsed)
@@ -142,6 +145,7 @@ public class PlayerStat : MonoBehaviour
         }
     }
 
+    //player stat UI 처리 함수
     private void GaugeUpdate()
     {
         barImage[HP].fillAmount = (float)currentHp / hp;
@@ -153,6 +157,7 @@ public class PlayerStat : MonoBehaviour
         text[LV].text = level.ToString();
     }
 
+    //sp 재충전 함수
     private void SpRecover()
     {
         if (!spUsed && currentSp < sp)
@@ -196,22 +201,8 @@ public class PlayerStat : MonoBehaviour
     }
 
 
-    public void IncreaseDP(int _count)
-    {
-        if (currentDp + _count < dp)
-            currentDp += _count;
-        else
-            currentDp = dp;
-    }
 
-    public void DecreaseDP(int _count)
-    {
-        currentDp -= _count;
-
-        if (currentDp <= 0)
-            Debug.Log("캐릭터의 방여력이 0이 되었습니다.");
-    }
-
+    //경험치 증가함수
     public void IncreaseEXP(int getExp)
     {
         currentExp += getExp;
@@ -221,6 +212,7 @@ public class PlayerStat : MonoBehaviour
         }
     }
 
+    //레벨 업 함수
     private void LevelUp()
     {
         currentExp = 0;
@@ -252,11 +244,14 @@ public class PlayerStat : MonoBehaviour
         GameManager.instance.GameOver(score);
     }
 
+    //외부에서 호출되는 점수 증가함수
     public void IncreseScore(int num)
     {
         score += num;
     }
 
+
+    //점수 반환 함수
     public int GetScore()
     {
         return score;

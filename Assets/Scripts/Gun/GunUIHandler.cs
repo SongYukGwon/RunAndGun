@@ -18,7 +18,7 @@ public class GunUIHandler : MonoBehaviour
     //private const int PISTOL = 0, ASSULT = 1, SHOTGUN = 2;
 
     
-
+    //총바뀔때마다 호출되는 UI 변경 함수
     public void ChangeGunUI(int type)
     {
         gunImages[type].color = new Color(1, 1, 1, 1);

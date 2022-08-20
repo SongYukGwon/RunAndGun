@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//무기 바꾸는 함수
 public class GunChanger : MonoBehaviour
 {
     //공유자원, 클래스 변수 = 정적 변수
@@ -46,9 +47,9 @@ public class GunChanger : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //무기바뀌는 버튼 입력 확인
         if (!isChangeWeapon)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1) && !currentWeaponName.Equals("pistol"))
@@ -72,9 +73,9 @@ public class GunChanger : MonoBehaviour
         }
     }
 
+    //외부에서 호출되는 탄약 증가 함수.
     public void IncreseAmmo(string type)
     {
-        Debug.Log(type);
         switch(type)
         {
             case ("all"):
@@ -93,6 +94,7 @@ public class GunChanger : MonoBehaviour
         }
     }
 
+    //총기바꾸는 코루틴 함수
     public IEnumerator ChangeWeaponCoroutine(string _name)
     {
         isChangeWeapon = true;
@@ -101,21 +103,17 @@ public class GunChanger : MonoBehaviour
 
         CancelPreWeaponAction();
 
-        WeaponChange(_name);
+        theGunController.GunChange(gunDictionary[_name]);
         yield return new WaitForSeconds(changeWeaponEndDelayTime);
 
         isChangeWeapon = false;
     }
 
+    //이전에 총기가 사용하고있는 코루틴 취소
     private void CancelPreWeaponAction()
     {
         Debug.Log("코루틴 취소");
         theGunController.CancelReload();
         GunController.isActivate = false;
-    }
-
-    private void WeaponChange(string _name)
-    {
-        theGunController.GunChange(gunDictionary[_name]);
     }
 }

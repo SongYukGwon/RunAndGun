@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-//오브젝트풀 사용 예정
 public class EnemySpawn : MonoBehaviour
 {
 
+    //필요한 컴포넌트
     [SerializeField]
     private int enemyCount;
     private int currentEnemyCount;
@@ -33,7 +33,7 @@ public class EnemySpawn : MonoBehaviour
         stage = num;
     }
 
-
+    //스폰시도 함수
     private void TrySpawnEnemy()
     {
         if (!endStage && !isSpawn)
@@ -47,6 +47,8 @@ public class EnemySpawn : MonoBehaviour
         }
     }
 
+    //스폰하는 함수
+    //시간에따라 한번에 스폰되는 양이 늘어나며 좀비 스탯을 높임
     private IEnumerator Spawn()
     {
         isSpawn = true;
@@ -63,11 +65,12 @@ public class EnemySpawn : MonoBehaviour
             }
             yield return new WaitForSeconds(3f - stage/10);
         }
+        yield return new WaitForSeconds(10f+stage);
         endStage = true;
         isSpawn = false;
-        yield return new WaitForSeconds(10f);
     }
 
+    //랜덤위치를 받아와서 출력하는 함수
     private Vector3 GetRandomEnemySpawnPosition()
     { 
         float radius = 20f;

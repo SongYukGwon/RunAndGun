@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
+//게임 상황
 public enum GameState
 {
     menu,
@@ -14,12 +15,17 @@ public enum GameState
 
 public class GameManager : MonoBehaviour
 {
+
+    // 싱글톤 선언
     public static GameManager instance;
 
+    //현재 게임 상황 변수
     public GameState currentGameState = GameState.menu;
 
     //멈춰있는 상태
     bool isPause;
+
+    //필요한 컴포넌트
     [SerializeField]
     private GameObject gameMenuImg;
     [SerializeField]
@@ -27,13 +33,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject gameClearImg;
 
-
+    //스코어 컴포넌트
     [SerializeField]
     private TextMeshProUGUI clearScoreText;
     [SerializeField]
     private TextMeshProUGUI overScoreText;
-
-    private TimerScript theTimer;
 
     private void Awake()
     {
@@ -52,23 +56,26 @@ public class GameManager : MonoBehaviour
         isPause = _isPause;
     }
 
+    //게임 시작 버튼 함수
     public void OnClickStartButton()
     {
         Debug.Log("게임시작");
         SetGameState(GameState.inGame);
     }
 
+    //게임 메뉴로가는 버튼 함수
     public void OnClickGameMenuButton()
     {
         SceneManager.LoadScene(0);
     }
 
+    //나가기 버튼 함수
     public void OnClickExitButton()
     {
-        Debug.Log("게임종료");
         Application.Quit();
     }
 
+    //게임 상황 설정함수
     void SetGameState(GameState newGameState)
     {
         switch(newGameState)
@@ -95,12 +102,15 @@ public class GameManager : MonoBehaviour
         currentGameState = newGameState;
     }
 
+    //외부에서 호출되는 게임 오버 함수
     public void GameOver(int score)
     {
         SetGameState(GameState.gameOver);
         overScoreText.text = "Kill : " + score.ToString();
     }
 
+
+    //외부에서 호출되는 게임 클리어 함수
     public void GameClear(int score)
     {
         SetGameState(GameState.gameClear);

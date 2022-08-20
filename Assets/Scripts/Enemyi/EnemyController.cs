@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
-
     NavMeshAgent nav;
 
     private Transform target;
@@ -25,9 +24,6 @@ public class EnemyController : MonoBehaviour
     private Rigidbody rigid;
     private CapsuleCollider col;
 
-
-
-    // Start is called before the first frame update
     void OnEnable()
     {
         thePlayerStat = FindObjectOfType<PlayerStat>();
@@ -55,6 +51,7 @@ public class EnemyController : MonoBehaviour
         CalAttackSpeed();
     }
 
+    //좀비의 속도 랜덤 설정 함수
     private void SetZombieWalkORRun()
     {
         float speed = Random.Range(currentZombie.walkSpeed, currentZombie.runSpeed);
@@ -72,15 +69,16 @@ public class EnemyController : MonoBehaviour
         nav.speed = speed;
     }
 
+    //공격속도 계산 함수
     private void CalAttackSpeed()
     {
         if(currentZombie.currentAttackSpeed > 0f)
             currentZombie.currentAttackSpeed -= Time.deltaTime;
     }
 
-    //범위안에 플레이어가 들어왔을때 <수정필요>
 
 
+    //범위안에 플레이어가 들어왔을때
     private void TryAttack()
     {
         if(Vector3.Distance(transform.position, target.position)<= 2.0f && currentZombie.currentAttackSpeed <= 0f)
@@ -162,7 +160,7 @@ public class EnemyController : MonoBehaviour
         thePlayerStat.IncreseScore(1);
 
         //오브젝트풀로 수정 예정
-        FindObjectOfType<ObjectManager>().TrySpawnItem(gameObject.transform.position);
+        ObjectManager.Instance.TrySpawnItem(gameObject.transform.position);
 
         yield return new WaitForSeconds(4f);
         EnemyObjectPool.ReturnObject(gameObject);

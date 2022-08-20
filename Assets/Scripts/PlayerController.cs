@@ -83,11 +83,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //levelUpdate 변수 설정 함수
     public void ChangeLevelUpdate(bool flag)
     {
         levelUpdate = flag;
     }
 
+    //플레이어의 체력 회복 키 입력 확인
     private void TryHeal()
     {
         if (Input.GetKeyDown(KeyCode.E))

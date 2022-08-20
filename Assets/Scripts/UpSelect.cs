@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
 
+//레벨업시 출력되는 ui함수
 public class UpSelect : MonoBehaviour, IPointerClickHandler
 {
 

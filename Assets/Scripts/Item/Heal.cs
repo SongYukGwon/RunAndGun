@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Heal아이템 함수
 public class Heal : ItemInfo
 {
 
