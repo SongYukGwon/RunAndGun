@@ -8,11 +8,6 @@ using UnityEngine.UI;
 // 사용자의 능력치 상승을 위함.
 public class LevelUpPause : MonoBehaviour
 {
-
-
-    //멈춰있는 상태
-    bool isPause;
-
     //필요한 컴포넌트
     [SerializeField]
     private Image[] selectUI;
@@ -28,26 +23,17 @@ public class LevelUpPause : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isPause = false;
         seletedStatus = new List<int>();
     }
 
 
-    //게임진행 멈춤 or 진행
-    private void ChangeTimeScale()
-    {
-        if (isPause)
-            Time.timeScale = 1;
-        else
-            Time.timeScale = 0;
-    }
+    
 
 
     //업그레이드 완료시 실행되는 함수
     public void ChangeActive()
     {
-        isPause = true;
-        ChangeTimeScale();
+        GameManager.instance.ChangeTimeScale(true);
         thePlayerController.ChangeLevelUpdate(false);
         seletedStatus.Clear();
         selectObject.SetActive(false);
@@ -58,8 +44,7 @@ public class LevelUpPause : MonoBehaviour
     //게임진행을 막고 업그레이드 UI를 표출
     public void LevelUp()
     {
-        isPause = false;
-        ChangeTimeScale();
+        GameManager.instance.ChangeTimeScale(false);
         thePlayerController.ChangeLevelUpdate(true);
         selectObject.SetActive(true);
 

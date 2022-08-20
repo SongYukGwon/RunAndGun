@@ -100,7 +100,6 @@ public class PlayerController : MonoBehaviour
     //데미지 처리
     public void Damaged(int dma)
     {
-        StopCoroutine(DamageAnim());
         StartCoroutine(DamageAnim());
         playerStat.Damaged(dma);
     }

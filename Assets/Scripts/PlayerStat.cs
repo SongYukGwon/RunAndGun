@@ -247,7 +247,6 @@ public class PlayerStat : MonoBehaviour
     //Á×´Â ÇÔ¼ö
     private void Die()
     {
-        Debug.Log("Dead");
-        Application.Quit();
+        GameManager.instance.GameOver();
     }
 }

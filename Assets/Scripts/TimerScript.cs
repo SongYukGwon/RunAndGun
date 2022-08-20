@@ -31,5 +31,9 @@ public class TimerScript : MonoBehaviour
             min++;
         }
 
+        if(min == 30)
+        {
+
+        }
     }
 }
