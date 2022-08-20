@@ -81,7 +81,8 @@ public class EnemyController : MonoBehaviour
     //범위안에 플레이어가 들어왔을때
     private void TryAttack()
     {
-        if(Vector3.Distance(transform.position, target.position)<= 2.0f && currentZombie.currentAttackSpeed <= 0f)
+        if(Vector3.Distance(transform.position, target.position)<= 2.0f && currentZombie.currentAttackSpeed <= 0f && 
+            !currentZombie.isDead)
         {
             currentZombie.currentAttackSpeed = currentZombie.attackSpeed;
             StartCoroutine(Attack(target.GetComponent<Collider>()));
