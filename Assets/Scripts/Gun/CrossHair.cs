@@ -25,6 +25,7 @@ public class CrossHair : MonoBehaviour
         animator.SetBool("Running", _flag);
     }
 
+
     // 점프할때 크로스헤어 함수
     public void JumpAnimation(bool _flag)
     {
@@ -37,15 +38,15 @@ public class CrossHair : MonoBehaviour
     {
         if (animator.GetBool("Walking"))
         {
-            animator.SetTrigger("Walk_Fire");
+            animator.SetTrigger("Walk_Attack");
         }
-        else if (animator.GetBool("Crouching"))
+        else if(animator.GetBool("Running"))
         {
-            animator.SetTrigger("Crouch_Fire");
+            animator.SetTrigger("Run_Attack");
         }
         else
         {
-            animator.SetTrigger("Idle_Fire");
+            animator.SetTrigger("Idle_Attack");
         }
     }
 

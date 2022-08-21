@@ -65,7 +65,7 @@ public class EnemySpawn : MonoBehaviour
             }
             yield return new WaitForSeconds(4f - ((float)stage/10));
         }
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(12f);
         endStage = true;
         isSpawn = false;
     }

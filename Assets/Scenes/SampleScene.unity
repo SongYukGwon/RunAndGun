@@ -8368,7 +8368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1774947204
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11030,6 +11030,10 @@ PrefabInstance:
     - target: {fileID: 3299685054077682670, guid: 1d427df1a311787489deda1c6934b648, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119884969721784542, guid: 1d427df1a311787489deda1c6934b648, type: 3}
+      propertyPath: carryBulletCount
+      value: 9999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d427df1a311787489deda1c6934b648, type: 3}

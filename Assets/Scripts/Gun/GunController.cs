@@ -152,6 +152,7 @@ public class GunController : MonoBehaviour
         currentFireRate = currentGun.fireRate - (0.01f * thePlayerStat.addAttackSpeed); // 연사속도 재계산
         currentGun.muzzleFlash.Play(); // 총구화염
         StopAllCoroutines();
+        theCrossHair.FireAnimation();
         StartCoroutine(Hit()); // 히트처리
         
         StartCoroutine(RetroActionCoroutine());
