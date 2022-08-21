@@ -114,6 +114,10 @@ public class GunController : MonoBehaviour
                 Shoot();
                 currentGun.audioShot.Play();
             }
+            else if(currentGun.carryBulletCount > 0)
+            {
+                StartCoroutine(ReloadCouroutine());
+            }
         }
     }
 
