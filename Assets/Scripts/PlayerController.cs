@@ -113,23 +113,17 @@ public class PlayerController : MonoBehaviour
         Color originColor = new Color(0,0,0,0);
         hitedImage.color = a;
 
-        Vector3 startPosition = theCamera.transform.eulerAngles;
-
-
         float shakeTime = 0.5f;
         while(shakeTime > 0.0f)
         {
             float x = 0;
             float y = 0;
             float z = Random.Range(-1f, 1f);
-            theCamera.transform.rotation = Quaternion.Euler(startPosition + new Vector3(x, y, z) * 0.7f);
 
             shakeTime -= 0.1f;
 
             yield return new WaitForSeconds(0.1f);
         }
-        theCamera.transform.rotation = Quaternion.Euler(startPosition);
-
 
         //yield return new WaitForSeconds(1f);
         hitedImage.color = originColor;
