@@ -98,9 +98,9 @@ public class EnemyController : MonoBehaviour
         nav.isStopped = true;
         anim.SetTrigger("Attack");
         currentZombie.isAttack = true;
-        yield return new WaitForSeconds(0.5f);
         if (Vector3.Distance(transform.position, target.position) <= 2.0f)
             collider.transform.gameObject.GetComponent<PlayerController>().Damaged(currentZombie.damage);
+        yield return new WaitForSeconds(0.5f);
         currentZombie.isAttack = false;
         nav.isStopped = false;
         yield break;

@@ -63,9 +63,9 @@ public class EnemySpawn : MonoBehaviour
                 em.transform.rotation = Quaternion.identity;
                 currentEnemyCount--;
             }
-            yield return new WaitForSeconds(3f - ((float)stage/10));
+            yield return new WaitForSeconds(4f - ((float)stage/10));
         }
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(15f);
         endStage = true;
         isSpawn = false;
     }

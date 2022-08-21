@@ -116,9 +116,6 @@ public class PlayerController : MonoBehaviour
         float shakeTime = 0.5f;
         while(shakeTime > 0.0f)
         {
-            float x = 0;
-            float y = 0;
-            float z = Random.Range(-1f, 1f);
 
             shakeTime -= 0.1f;
 

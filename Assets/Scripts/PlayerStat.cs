@@ -218,7 +218,7 @@ public class PlayerStat : MonoBehaviour
         currentExp = 0;
 
         level += 1;
-        exp += 50;
+        exp += 30;
 
         FindObjectOfType<LevelUpPause>().LevelUp();
     }

@@ -40,7 +40,7 @@ public class ZombieInfo : MonoBehaviour
     // 스테이지에따라 점차 좀비의 스탯이 늘어남.
     public void SetStatus(int stage)
     {
-        hp = (stage*2) + 1;
+        hp = stage + 1;
         damage = stage+1;
         exp = stage + 1;
         currentHp = hp;
