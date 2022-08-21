@@ -151,8 +151,8 @@ public class GunController : MonoBehaviour
         currentGun.currentBulletCount--;
         currentFireRate = currentGun.fireRate - (0.01f * thePlayerStat.addAttackSpeed); // 연사속도 재계산
         currentGun.muzzleFlash.Play(); // 총구화염
-        Hit(); // 히트처리
-        StopAllCoroutines(); 
+        StopAllCoroutines();
+        StartCoroutine(Hit()); // 히트처리
         
         StartCoroutine(RetroActionCoroutine());
     }
@@ -160,7 +160,7 @@ public class GunController : MonoBehaviour
 
     //정확도에따라 hit처리하는 함수
     //적에 맞으면 빨간색 효과 아니면 검은색 효과를 냄
-    private void Hit()
+    private IEnumerator Hit()
     {
 
         RaycastHit hitInfo;
@@ -173,14 +173,20 @@ public class GunController : MonoBehaviour
         {
             if (hitInfo.transform.gameObject.CompareTag("Enemy"))
             {
-                clone = Instantiate(zombie_hit_prefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
+                clone = HitEffectPool.GetHitObject();
+                clone.transform.position = hitInfo.point;
+                clone.transform.rotation = Quaternion.LookRotation(hitInfo.normal);
                 hitInfo.transform.GetComponent<EnemyController>().Damage(currentGun.damage + thePlayerStat.addAttack, transform.position);
-                Destroy(clone, 2);
+                yield return new WaitForSeconds(2f);
+                HitEffectPool.ReturnHitObject(clone);
             }
             else if(!hitInfo.transform.gameObject.CompareTag("Dead") && !hitInfo.transform.gameObject.CompareTag("Player"))
             {
-                clone = Instantiate(other_hit_prefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
-                Destroy(clone, 2);
+                clone = HitEffectPool.GetOtherObject();
+                clone.transform.position = hitInfo.point;
+                clone.transform.rotation = Quaternion.LookRotation(hitInfo.normal);
+                yield return new WaitForSeconds(2f);
+                HitEffectPool.ReturnOtherObject(clone);
             }
         }
     }
