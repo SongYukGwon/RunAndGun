@@ -8197,8 +8197,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3072d5f19f78341a4ef7aeee38dcb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 8
-  runSpeed: 12
+  walkSpeed: 6
+  runSpeed: 9
   jumpForce: 5
   lookSensitivity: 10
   cameraRotationLimit: 90
@@ -10958,6 +10958,14 @@ PrefabInstance:
     - target: {fileID: 2249403069757324910, guid: 4aeb5c2b507cbf14db2bbb5d183028fd, type: 3}
       propertyPath: m_Name
       value: shotgun
+      objectReference: {fileID: 0}
+    - target: {fileID: 5420663891136645931, guid: 4aeb5c2b507cbf14db2bbb5d183028fd, type: 3}
+      propertyPath: accuracy
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5420663891136645931, guid: 4aeb5c2b507cbf14db2bbb5d183028fd, type: 3}
+      propertyPath: reloadTime
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4aeb5c2b507cbf14db2bbb5d183028fd, type: 3}
