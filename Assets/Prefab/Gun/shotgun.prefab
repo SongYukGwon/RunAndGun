@@ -105,7 +105,7 @@ MonoBehaviour:
   accuracy: 0.1
   fireRate: 1
   reloadTime: 5
-  damage: 10
+  damage: 100
   reloadBulletCount: 5
   currentBulletCount: 5
   carryBulletCount: 10

@@ -41,6 +41,8 @@ public class ZombieInfo : MonoBehaviour
     public void SetStatus(int stage)
     {
         hp = (stage*2) + 1;
+        damage = stage+1;
+        exp = stage + 1;
         currentHp = hp;
     }
 

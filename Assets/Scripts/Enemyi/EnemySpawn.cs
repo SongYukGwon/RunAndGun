@@ -42,7 +42,7 @@ public class EnemySpawn : MonoBehaviour
         }
         else if(endStage)
         {
-            currentEnemyCount += 5;
+            currentEnemyCount += enemyCount * 5 * (stage+2);
             endStage = false;
         }
     }
@@ -63,9 +63,9 @@ public class EnemySpawn : MonoBehaviour
                 em.transform.rotation = Quaternion.identity;
                 currentEnemyCount--;
             }
-            yield return new WaitForSeconds(3f - stage/10);
+            yield return new WaitForSeconds(3f - ((float)stage/10));
         }
-        yield return new WaitForSeconds(10f+stage);
+        yield return new WaitForSeconds(10f);
         endStage = true;
         isSpawn = false;
     }

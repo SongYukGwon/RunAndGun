@@ -269,8 +269,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gunName: assult
-  range: 10
-  accuracy: 0.02
+  range: 100
+  accuracy: 0.01
   fireRate: 0.15
   reloadTime: 1.5
   damage: 1
