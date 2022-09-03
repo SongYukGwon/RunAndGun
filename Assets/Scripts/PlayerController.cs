@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider>();
         applySpeed = walkSpeed;
         originPosY = theCamera.transform.localPosition.y;
-        levelUpdate = false;
+        levelUpdate = true;
     }
 
     // Update is called once per frame

@@ -10821,6 +10821,7 @@ MonoBehaviour:
   gameMenuImg: {fileID: 1697504233}
   gameEndingImg: {fileID: 1585610937}
   gameClearImg: {fileID: 34985086}
+  thePlayerContoller: {fileID: 1763703213}
   clearScoreText: {fileID: 379994979}
   overScoreText: {fileID: 1891740658}
 --- !u!114 &2146619356

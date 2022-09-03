@@ -81,15 +81,12 @@ public class GunChanger : MonoBehaviour
             case ("all"):
                 gunDictionary["assult"].carryBulletCount += 30;
                 gunDictionary["shotgun"].carryBulletCount += 14;
-                Debug.Log("ALLGET");
                 break;
             case ("assult"):
                 gunDictionary["assult"].carryBulletCount += 30;
-                Debug.Log("ASSULTGET");
                 break;
             case ("shotgun"):
                 gunDictionary["shotgun"].carryBulletCount += 14;
-                Debug.Log("SHOTGUNGET");
                 break;
         }
     }

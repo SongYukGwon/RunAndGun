@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     private GameObject gameEndingImg;
     [SerializeField]
     private GameObject gameClearImg;
+    [SerializeField]
+    private PlayerController thePlayerContoller;
 
     //스코어 컴포넌트
     [SerializeField]
@@ -61,6 +63,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("게임시작");
         SetGameState(GameState.inGame);
+        thePlayerContoller.ChangeLevelUpdate(false);
     }
 
     //게임 메뉴로가는 버튼 함수
