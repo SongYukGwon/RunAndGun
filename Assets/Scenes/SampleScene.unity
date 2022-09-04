@@ -6269,6 +6269,7 @@ MonoBehaviour:
   currentAmmoText: {fileID: 630977786}
   carryAmmoText: {fileID: 2030155355}
   thePlayerStat: {fileID: 632656965}
+  GrenadePrefab: {fileID: 8679790767618227924, guid: 6067bc4b3d142274fbd719f474e17536, type: 3}
 --- !u!114 &1392917586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10932,6 +10933,10 @@ PrefabInstance:
     - target: {fileID: 1909432453435272084, guid: 4d18069fb99658d47b88a7f582dda253, type: 3}
       propertyPath: m_Name
       value: assault
+      objectReference: {fileID: 0}
+    - target: {fileID: 1909432453435272084, guid: 4d18069fb99658d47b88a7f582dda253, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6979312892488505903, guid: 4d18069fb99658d47b88a7f582dda253, type: 3}
       propertyPath: delay

@@ -55,12 +55,19 @@ public class GunController : MonoBehaviour
     [SerializeField]
     private PlayerStat thePlayerStat;
 
+    //수류탄 필요 컴포넌트
+    private int hasGrenades;
+    [SerializeField]
+    private GameObject GrenadePrefab;
+
+
     void Start()
     {
         originPos = Vector3.zero;
         layerMaskEmemy = (-1) - (1 << LayerMask.NameToLayer("Dead")); // Enemy레이어만 탐색하도록지정
         GunChanger.currentWeapon = currentGun.transform;
         GunChanger.currentWeaponAnim = currentGun.GetComponent<Animator>();
+        hasGrenades = 10;
     }
 
     void Update()
@@ -69,7 +76,7 @@ public class GunController : MonoBehaviour
         {
             GunFireRateCalc();
             TryFire();
-            TryReload();
+            TryKeyCode();
             AmmoTextUpdate();
         }
     }
@@ -212,12 +219,30 @@ public class GunController : MonoBehaviour
     
 
     //재장전 시도
-    private void TryReload()
+    private void TryKeyCode()
     {
         if (Input.GetKeyDown(KeyCode.R) && !isReload && currentGun.currentBulletCount < currentGun.reloadBulletCount)
         {
             StartCoroutine(ReloadCouroutine());
             
+        }
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            ThrowGrenade();
+        }
+
+    }
+    private void ThrowGrenade()
+    {
+        if (hasGrenades == 0)
+            return;
+
+        if (!isReload )
+        {
+            Debug.Log(theCam.transform);
+            GameObject grenade = Instantiate(GrenadePrefab, theCam.transform);
+            Rigidbody grenadeRigidbody = grenade.GetComponent<Rigidbody>();
+            grenadeRigidbody.AddForce(theCam.transform.forward * 75);
         }
     }
 

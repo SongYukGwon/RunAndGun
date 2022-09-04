@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
             CameraRotation();
             CharacterRotation();
             MoveCheck();
-            TryHeal();
+            TryItem();
         }
     }
 
@@ -90,12 +90,13 @@ public class PlayerController : MonoBehaviour
     }
 
     //플레이어의 체력 회복 키 입력 확인
-    private void TryHeal()
+    private void TryItem()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
             playerStat.Heal();
         }
+        
     }
 
     
